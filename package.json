@@ -1,7 +1,7 @@
 {
   "name": "abmh-tailwind-working",
   "version": "1.0.0",
-  "homepage": "https://moeez-ul-hassan.github.io/abmhportfolio",
+  "homepage": "https://Moeez Ul Hassan.github.io/abmhportfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
