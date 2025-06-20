@@ -1,11 +1,13 @@
 {
   "name": "abmh-tailwind-working",
   "version": "1.0.0",
+  "homepage": "https://moeez-ul-hassan.github.io/abmhportfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
