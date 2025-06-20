@@ -1,0 +1,62 @@
+/* ===============================
+   HERO SECTION STYLES
+================================= */
+
+/* Full screen hero section with background image */
+.home-hero {
+  @apply w-full h-screen bg-cover bg-center relative 
+         flex flex-col items-center justify-start 
+         px-4 pt-24 pb-12 gap-12;
+  background-image: url('/bg.jpg');
+}
+
+/* Text container for heading + paragraph */
+.hero-overlay {
+  @apply text-center text-black max-w-3xl;
+}
+
+/* Main heading */
+.hero-title {
+  @apply text-4xl md:text-6xl font-bold mb-4 tracking-wide font-myfont;
+}
+
+/* Subheading */
+.hero-subtitle {
+  @apply text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto;
+}
+
+/* Optional custom font class */
+.fancy-font {
+  @apply font-myfont;
+}
+
+
+/* ===============================
+   CARD / FEATURES SECTION
+================================= */
+
+/* Row of cards */
+.construction-row {
+  @apply flex flex-wrap justify-center gap-6;
+}
+
+/* Individual card */
+.construction-card {
+  @apply bg-white border border-gray-200 rounded-xl shadow-md 
+         px-6 py-8 w-64 text-center transition-all duration-500;
+}
+
+/* Image/logo in card */
+.card-icon {
+  @apply w-12 h-12 mx-auto mb-4;
+}
+
+/* Card title */
+.card-title {
+  @apply text-xl font-semibold text-orange-800 mb-2;
+}
+
+/* Description */
+.card-desc {
+  @apply text-gray-600 text-sm;
+}
