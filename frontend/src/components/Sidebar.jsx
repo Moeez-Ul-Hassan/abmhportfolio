@@ -1,6 +1,6 @@
 // Sidebar.jsx
 import { Link, useLocation } from "react-router-dom";
-import logo from './assets/logo.png'
+import logo from '../assets/logo.png'
 import "./Sidebar.css";
 
 export default function Sidebar() {

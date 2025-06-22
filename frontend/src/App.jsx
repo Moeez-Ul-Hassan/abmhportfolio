@@ -1,23 +1,23 @@
-// 🔁 React Router imports for routing between pages
+//  React Router imports for routing between pages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// 🧱 Layout component
+// Layout component
 import Sidebar from "./components/Sidebar";
 
-// 📄 Page components
+// Page components
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import AdminPanel from "./pages/AdminPanel"; // ✅ import added
+import AdminPanel from "./pages/AdminPanel"; // import added
 
-// 🎨 Global styles (Tailwind & custom)
+// Global styles (Tailwind & custom)
 import "./App.css";
 
 // 🚀 Main App Component
 function App() {
   return (
-    <Router>
+    <Router basename="/abmhportfolio">
       {/* Layout wrapper: sidebar + main page content */}
       <div className="app-layout flex">
         
@@ -31,7 +31,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminPanel />} /> {/* ✅ New Route */}
+            <Route path="/admin" element={<AdminPanel />} /> {/* New Route */}
           </Routes>
         </main>
 

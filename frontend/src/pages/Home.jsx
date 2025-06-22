@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
 
+import roads from '../assets/icons/roadm.jpg';
+import building from '../assets/icons/buildingm.jpg';
+import bridge from '../assets/icons/bridge.jpg';
+import tunnel from '../assets/icons/tunnelm.jpg';
+import ind from '../assets/icons/a.jpg';
+
 // Static construction types
 const constructionData = [
   {
     title: "Roads",
     desc: "Highway and street infrastructure with national standards.",
-    img: "/icons/roadm.jpg",
+    img: roads,
   },
   {
     title: "Buildings",
     desc: "Residential and commercial structures of all scales.",
-    img: "/icons/buildingm.jpg",
+    img: building,
   },
   {
     title: "Bridges",
     desc: "Strong and safe bridge development across terrains.",
-    img: "/icons/bridge.jpg",
+    img: bridge,
   },
   {
     title: "Industrial",
     desc: "Factory and warehouse construction for industries.",
-    img: "/icons/a.jpg",
+    img: ind,
   },
   {
     title: "Tunnels",
     desc: "Precision-engineered tunnels for transport and utilities.",
-    img: "/icons/tunnelm.jpg",
+    img: tunnel,
   },
 ];
 
