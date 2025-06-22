@@ -1,5 +1,6 @@
 // Sidebar.jsx
 import { Link, useLocation } from "react-router-dom";
+import logo from './assets/logo.png'
 import "./Sidebar.css";
 
 export default function Sidebar() {
@@ -12,7 +13,7 @@ export default function Sidebar() {
     <div className="sidebar">
       {/* === Logo + Company Name === */}
       <div className="sidebar-header">
-        <img src="/logo.png" alt="ABMH Logo" className="sidebar-logo" />
+        <img src={logo} alt="ABMH Logo" className="sidebar-logo" />
         <h1 className="sidebar-title">ABMH</h1>
       </div>
 
