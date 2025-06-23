@@ -55,9 +55,11 @@
   @apply flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10; /* Responsive gaps */
 }
 
-/* Individual card */
+/* Individual card with hover animation */
 .construction-card {
-  @apply bg-white border border-gray-200 rounded-xl shadow-md px-6 py-8 w-64 md:w-72 lg:w-80 text-center transition-all duration-500;
+  @apply bg-white border border-gray-200 rounded-xl shadow-md px-6 py-8 w-64 md:w-72 lg:w-80 text-center transition-all duration-300;
+  /* Hover animation: scale up and slight rotate */
+  @apply hover:scale-105 hover:-rotate-2 hover:shadow-xl;
 }
 
 /* Image/logo in card */
