@@ -1,16 +1,20 @@
 /* HERO SECTION STYLES */
 
-/* Full screen hero section with background image */
+/* Full screen hero section with dynamic background, ensuring no white space */
 .home-hero {
-  @apply w-full h-screen bg-cover bg-center relative flex flex-col items-center justify-start px-4 pt-28 pb-12 gap-12;
-  background-image: url('/bg.jpg');
+  @apply w-full min-h-screen relative flex flex-col items-center justify-start px-0 pt-28 pb-12 gap-12;
+  /* Ensure background covers the entire area, centered, no repeat, and no white space */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Add zoom animation */
+  animation: zoomInOut 5s infinite; /* Matches the 5-second interval */
 }
 
 /* Text container for heading + paragraph */
 .hero-overlay {
   @apply text-center text-black max-w-3xl animate-fadeIn;
 }
-
 
 /* Main heading */
 .hero-title {
@@ -22,47 +26,51 @@
   @apply text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto;
 }
 
-/* Main Heading  Animation */ 
+/* Main Heading Animation */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 10; }
+  to { opacity: 1; } /* Corrected for proper opacity */
 }
 
 .animate-fadeIn {
   animation: fadeIn 1s ease-in;
 }
 
+/* Zoom animation for background images */
+@keyframes zoomInOut {
+  0% { background-size: 100%; } /* Start at original size */
+  50% { background-size: 110%; } /* Zoom in slightly */
+  100% { background-size: 100%; } /* Reset for next image */
+}
 
 /* Optional custom font class */
 .fancy-font {
   @apply font-myfont;
 }
 
-
 /* CARD / FEATURES SECTION */
 
 /* Row of cards */
 .construction-row {
-  @apply flex flex-wrap justify-center gap-6;
+  @apply flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10; /* Responsive gaps */
 }
 
 /* Individual card */
 .construction-card {
-  @apply bg-white border border-gray-200 rounded-xl shadow-md 
-         px-6 py-8 w-64 text-center transition-all duration-500;
+  @apply bg-white border border-gray-200 rounded-xl shadow-md px-6 py-8 w-64 md:w-72 lg:w-80 text-center transition-all duration-500;
 }
 
 /* Image/logo in card */
 .card-icon {
-  @apply w-12 h-12 mx-auto mb-4;
+  @apply w-12 h-16 mx-auto mb-4;
 }
 
 /* Card title */
 .card-title {
-  @apply text-xl font-semibold text-orange-800 mb-2;
+  @apply text-xl md:text-2xl font-semibold text-orange-800 mb-2;
 }
 
 /* Description */
 .card-desc {
-  @apply text-gray-600 text-sm;
+  @apply text-gray-600 text-sm md:text-base;
 }
