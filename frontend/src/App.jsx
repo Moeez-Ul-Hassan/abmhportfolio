@@ -14,7 +14,7 @@ import AdminPanel from "./pages/AdminPanel"; // import added
 // Global styles (Tailwind & custom)
 import "./App.css";
 
-// 🚀 Main App Component
+// Main App Component
 function App() {
   return (
     <Router basename="/abmhportfolio">

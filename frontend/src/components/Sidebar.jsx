@@ -11,16 +11,16 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar">
-      {/* === Logo + Company Name === */}
+      {/* Logo + Company Name  */}
       <div className="sidebar-header">
         <img src={logo} alt="ABMH Logo" className="sidebar-logo" />
         <h1 className="sidebar-title">ABMH</h1>
       </div>
 
-      {/* === Green line under logo === */}
+      {/*  Green line under logo  */}
       <div className="sidebar-separator" />
 
-      {/* === Main Navigation === */}
+      {/*  Main Navigation  */}
       <nav className="sidebar-nav">
         <Link to="/" className={getLinkClass("/")}>Home</Link>
         <Link to="/about" className={getLinkClass("/about")}>About</Link>
@@ -34,7 +34,7 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-      {/* === Footer === */}
+      {/*  Footer */}
       <div className="sidebar-footer">
         <div className="social-links">
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
