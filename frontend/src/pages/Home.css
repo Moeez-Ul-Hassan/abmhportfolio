@@ -2,26 +2,36 @@
 
 /* Full screen hero section with background image */
 .home-hero {
-  @apply w-full h-screen bg-cover bg-center relative 
-         flex flex-col items-center justify-start 
-         px-4 pt-24 pb-12 gap-12;
+  @apply w-full h-screen bg-cover bg-center relative flex flex-col items-center justify-start px-4 pt-28 pb-12 gap-12;
   background-image: url('/bg.jpg');
 }
 
 /* Text container for heading + paragraph */
 .hero-overlay {
-  @apply text-center text-black max-w-3xl;
+  @apply text-center text-black max-w-3xl animate-fadeIn;
 }
+
 
 /* Main heading */
 .hero-title {
-  @apply text-4xl md:text-6xl font-bold mb-4 tracking-wide font-myfont;
+  @apply text-4xl md:text-7xl font-bold mb-4 tracking-wide font-myfont;
 }
 
 /* Subheading */
 .hero-subtitle {
   @apply text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto;
 }
+
+/* Main Heading  Animation */ 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 10; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in;
+}
+
 
 /* Optional custom font class */
 .fancy-font {

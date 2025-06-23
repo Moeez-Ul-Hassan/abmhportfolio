@@ -2,35 +2,35 @@
 .sidebar {
   @apply fixed top-0 left-0 w-full md:w-60 h-20 md:h-screen bg-black text-white 
          flex md:flex-col items-center md:items-start 
-         justify-between md:justify-start px-6 py-4 
+         justify-between md:justify-start px-6 py-14 
          shadow-lg z-50;
 }
 
 /* Header with logo + title  */
 .sidebar-header {
   @apply md:border-none w-full md:w-auto flex items-center 
-         justify-center md:justify-start gap-2;
+         justify-center md:justify-start gap-1;
   
 }
 
 /* Logo image */
 .sidebar-logo {
-  @apply w-8 h-8 object-contain;
+  @apply w-24 h-24 object-contain;
 }
 
 /* Company name */
 .sidebar-title {
-  @apply text-lg font-semibold tracking-wide;
+  @apply text-lg font-bold from-stone-400 tracking-wide;
 }
 
 /* Green separator line */
 .sidebar-separator {
-  @apply hidden md:block h-1 w-full bg-green-500 rounded-full mt-4;
+  @apply hidden md:block h-1 w-full bg-green-500 rounded-full mt-10;
 }
 
 /* Navigation section  */
 .sidebar-nav {
-  @apply flex md:flex-col gap-4 text-sm font-medium 
+  @apply flex md:flex-col gap-10 text-sm font-medium 
          w-full md:mt-10 justify-center md:justify-start;
 }
 
@@ -46,13 +46,13 @@
 
 /* Admin link special treatment */
 .admin-link {
-  @apply text-green-400 font-semibold;
+  @apply text-green-400 font-bold;
 }
 
 /* Footer on desktop only */
 .sidebar-footer {
   @apply hidden md:flex flex-col items-start justify-end 
-         mt-auto w-full pt-6 border-t border-gray-700 
+         mt-auto w-full pt-6 border-t border-gray-200 
          gap-2 text-xs text-gray-400;
 }
 

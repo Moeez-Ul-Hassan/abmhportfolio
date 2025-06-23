@@ -50,22 +50,23 @@ export default function Home() {
     .concat(constructionData)
     .slice(startIndex, startIndex + 3);
 
-  return (
-    <div className="home-hero">
-      {/* Hero text area */}
-      <div className="hero-overlay">
-        <h1 className="hero-title fancy-font">
-          ABMH Construction (Pvt.) Ltd.
-        </h1>
+   const handlePrev = () => setStartIndex((prev) => (prev - 1 + constructionData.length) % constructionData.length);
+  const handleNext = () => setStartIndex((prev) => (prev + 1) % constructionData.length);
 
+
+
+return (
+    <div className="home-hero">
+      <div className="hero-overlay">
+        <h1 className="hero-title fancy-font">ABMH Construction (Pvt.) Ltd.</h1>
         <p className="hero-subtitle font-parafont">
-          Building dreams, shaping skylines, delivering <br />
-          excellence across Pakistan.
+          Building dreams, shaping skylines, delivering <br /> excellence across Pakistan.
         </p>
       </div>
-
-      {/* Card Row Section */}
-      <div className="construction-row">
+      <div className="construction-row relative">
+        <button onClick={handlePrev} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+          ←
+        </button>
         {visibleCards.map((card, index) => (
           <div key={index} className="construction-card">
             <img src={card.img} alt={card.title} className="card-icon" />
@@ -73,6 +74,9 @@ export default function Home() {
             <p className="card-desc">{card.desc}</p>
           </div>
         ))}
+        <button onClick={handleNext} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
+          →
+        </button>
       </div>
     </div>
   );
