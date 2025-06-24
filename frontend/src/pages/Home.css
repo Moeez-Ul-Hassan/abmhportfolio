@@ -1,9 +1,9 @@
 /* HERO SECTION STYLES */
 
-/* Full screen hero section with dynamic background, ensuring no white space */
+/* Full screen hero section with dynamic background, responsive to screen size */
 .home-hero {
-  @apply w-full min-h-screen relative flex flex-col items-center justify-start px-0 pt-28 pb-12 gap-12;
-  /* Ensure background covers the entire area, centered, no repeat, and no white space */
+  @apply w-full min-h-screen relative flex flex-col items-center justify-start px-0 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12;
+  /* Ensure background covers the entire area, centered, no repeat, and scales responsively */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,19 +11,19 @@
   animation: zoomInOut 5s infinite; /* Matches the 5-second interval */
 }
 
-/* Text container for heading + paragraph */
+/* Text container for heading + paragraph, responsive padding and max-width */
 .hero-overlay {
-  @apply text-center text-black max-w-3xl animate-fadeIn;
+  @apply text-center text-black max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl animate-fadeIn p-4 sm:p-6;
 }
 
-/* Main heading */
+/* Main heading, responsive font size */
 .hero-title {
-  @apply text-4xl md:text-7xl font-bold mb-4 tracking-wide font-myfont;
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-wide font-myfont;
 }
 
-/* Subheading */
+/* Subheading, responsive font size and line height */
 .hero-subtitle {
-  @apply text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto;
+  @apply text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-tight sm:leading-normal md:leading-relaxed max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl mx-auto;
 }
 
 /* Main Heading Animation */
@@ -50,29 +50,34 @@
 
 /* CARD / FEATURES SECTION */
 
-/* Row of cards */
+/* Row of cards, responsive layout */
 .construction-row {
-  @apply flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10; /* Responsive gaps */
+  @apply flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10;
 }
 
-/* Individual card with hover animation */
+/* Individual card with hover animation, responsive width */
 .construction-card {
-  @apply bg-white border border-gray-200 rounded-xl shadow-md px-6 py-8 w-64 md:w-72 lg:w-80 text-center transition-all duration-300;
+  @apply bg-white border border-gray-200 rounded-xl shadow-md px-4 sm:px-6 py-4 sm:py-6 w-48 sm:w-56 md:w-64 lg:w-72 text-center transition-all duration-300;
   /* Hover animation: scale up and slight rotate */
   @apply hover:scale-105 hover:-rotate-2 hover:shadow-xl;
 }
 
-/* Image/logo in card */
+/* Image/logo in card, responsive size */
 .card-icon {
-  @apply w-12 h-16 mx-auto mb-4;
+  @apply w-10 sm:w-12 h-14 sm:h-16 mx-auto mb-2 sm:mb-4;
 }
 
-/* Card title */
+/* Card title, responsive font size */
 .card-title {
-  @apply text-xl md:text-2xl font-semibold text-orange-800 mb-2;
+  @apply text-lg sm:text-xl md:text-2xl font-semibold text-orange-800 mb-1 sm:mb-2;
 }
 
-/* Description */
+/* Description, responsive font size */
 .card-desc {
-  @apply text-gray-600 text-sm md:text-base;
+  @apply text-xs sm:text-sm md:text-base text-gray-600;
+}
+
+/* Navigation buttons, responsive positioning */
+.home-hero button {
+  @apply p-2 sm:p-3 rounded-full bg-gray-800 text-white;
 }
