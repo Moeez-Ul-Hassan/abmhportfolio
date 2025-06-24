@@ -1,59 +1,51 @@
-/* Sidebar container stays same */
+/* Sidebar container stays same, with updated color theme */
 .sidebar {
-  @apply fixed top-0 left-0 w-full md:w-60 h-20 md:h-screen bg-black text-white 
-         flex md:flex-col items-center md:items-start 
-         justify-between md:justify-start px-6 py-4 
-         shadow-lg z-50;
+  @apply fixed top-0 left-0 w-full md:w-60 h-20 md:h-screen bg-gray-900 text-white flex md:flex-col items-center md:items-start justify-between md:justify-start px-6 py-4 shadow-lg z-50 transition-all duration-300;
 }
 
-/* Header with logo + title  */
+/* Header with logo + title */
 .sidebar-header {
-  @apply md:border-none w-full md:w-auto flex items-center 
-         justify-center md:justify-start gap-2;
-  
+  @apply md:border-none w-full md:w-auto flex items-center justify-center md:justify-start gap-2;
 }
 
 /* Logo image */
 .sidebar-logo {
-  @apply w-8 h-8 object-contain;
+  @apply w-16 h-16 object-contain;
 }
 
 /* Company name */
 .sidebar-title {
-  @apply text-lg font-semibold tracking-wide;
+  @apply text-xl md:text-2xl font-bold tracking-wide text-white;
 }
 
-/* Green separator line */
+/* Green separator line with logo color accent */
 .sidebar-separator {
-  @apply hidden md:block h-1 w-full bg-green-500 rounded-full mt-4;
+  @apply hidden md:block h-1 w-full bg-green-500 rounded-full mt-6;
 }
 
-/* Navigation section  */
+/* Navigation section */
 .sidebar-nav {
-  @apply flex md:flex-col gap-4 text-sm font-medium 
-         w-full md:mt-10 justify-center md:justify-start;
+  @apply flex md:flex-col gap-6 text-sm md:text-base font-medium w-full md:mt-6 justify-center md:justify-start;
 }
 
-/* Navigation link style */
+/* Navigation link style with hover animation */
 .sidebar-link {
-  @apply text-white hover:text-orange-400 transition-colors;
+  @apply text-white hover:text-green-400 transition-colors duration-300 hover:scale-105;
 }
 
-/* Highlight active page */
+/* Highlight active page with logo-inspired blue */
 .sidebar-link.active {
-  @apply text-orange-500;
+  @apply text-blue-400 font-semibold;
 }
 
-/* Admin link special treatment */
+/* Admin link special treatment with green accent */
 .admin-link {
-  @apply text-green-400 font-semibold;
+  @apply text-green-400 font-bold hover:text-green-300;
 }
 
-/* Footer on desktop only */
+/* Footer on desktop only with adjusted spacing */
 .sidebar-footer {
-  @apply hidden md:flex flex-col items-start justify-end 
-         mt-auto w-full pt-6 border-t border-gray-700 
-         gap-2 text-xs text-gray-400;
+  @apply hidden md:flex flex-col items-start justify-end mt-auto w-full pt-6 border-t border-gray-700 gap-2 text-xs text-gray-300;
 }
 
 .social-links {
@@ -62,4 +54,20 @@
 
 .footer-text {
   @apply text-[10px] leading-tight;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    @apply h-16 py-2;
+  }
+  .sidebar-nav {
+    @apply gap-4;
+  }
+  .sidebar-logo {
+    @apply w-12 h-12;
+  }
+  .sidebar-title {
+    @apply text-lg;
+  }
 }

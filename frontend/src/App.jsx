@@ -1,4 +1,4 @@
-//  React Router imports for routing between pages
+// React Router imports for routing between pages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Layout component
@@ -19,13 +19,12 @@ function App() {
   return (
     <Router basename="/abmhportfolio">
       {/* Layout wrapper: sidebar + main page content */}
-      <div className="app-layout flex">
-        
+      <div className="app-layout flex flex-col md:flex-row">
         {/* Sidebar stays fixed on left (or top on mobile) */}
         <Sidebar />
 
-        {/* Main page content, pushed right by sidebar width */}
-        <main className="main-content w-full ml-0 md:ml-60 p-4">
+        {/* Main page content, pushed right by sidebar width, full height */}
+        <main className="main-content w-full ml-0 md:ml-60 p-4 flex-1 min-h-screen">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -34,7 +33,6 @@ function App() {
             <Route path="/admin" element={<AdminPanel />} /> {/* New Route */}
           </Routes>
         </main>
-
       </div>
     </Router>
   );
