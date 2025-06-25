@@ -4,6 +4,7 @@
 
 /* Remove default margins and padding from body to eliminate white space */
 body {
+   @apply bg-gray-50 text-gray-800 font-sans;
   margin: 0;
   padding: 0;
   min-height: 100vh;
