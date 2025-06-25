@@ -27,44 +27,52 @@ const constructionData = [
 const backgroundImages = [bg, bg1, bg2, bg3, bg4];
 
 export default function Home() {
-  const [startIndex, setStartIndex] = useState(0); // State to track the starting index of visible cards
-  const [bgIndex, setBgIndex] = useState(0); // State to track the current background image index
+  const [bgIndex, setBgIndex] = useState(0); // Track current background index
+  const [animationClass, setAnimationClass] = useState("zoom-in"); // Control animation state
 
   useEffect(() => {
-    // Set up an interval to cycle through cards and backgrounds every 5 seconds
+    // Initial zoom-in setup
+    setAnimationClass("zoom-in");
+
+    // Set up interval for smooth background transition every 10 seconds
     const interval = setInterval(() => {
-      setStartIndex((prev) => (prev + 1) % constructionData.length);
-      setBgIndex((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000); // 5 seconds to allow zoom animation to complete
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+      setAnimationClass("fade-out");
+      setTimeout(() => {
+        setBgIndex((prev) => (prev + 1) % backgroundImages.length);
+        setAnimationClass("fade-in zoom-in");
+      }, 2000); // 2-second fade-out duration
+    }, 10000); // 10 seconds total (8s zoom + 2s transition)
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
-  // Function to get visible cards based on the current start index
-  const visibleCards = constructionData.slice(startIndex, startIndex + 3).concat(
-    constructionData.slice(0, Math.max(0, startIndex + 3 - constructionData.length))
-  );
-
-
+  // Function to get visible cards
+  const visibleCards = constructionData.slice(0, 3); // Show first 3 cards initially
 
   return (
-    <div className="home-hero" style={{ backgroundImage: `url(${backgroundImages[bgIndex]})` }}>
-      <div className="hero-overlay">
-        <h1 className="hero-title fancy-font">ABMH Construction (Pvt.) Ltd.</h1>
-        <p className="hero-subtitle font-parafont">
-          Building dreams, shaping skylines, delivering <br /> excellence across Pakistan.
-        </p>
-        {/* Removed "Get a Quote" button as requested */}
+    <div>
+      {/* Hero Section */}
+      <div className="home-hero" style={{ backgroundImage: `url(${backgroundImages[bgIndex]})`, animation: animationClass }}>
+        <div className="hero-overlay">
+          <h1 className="hero-title fancy-font">ABMH Construction (Pvt.) Ltd.</h1>
+          <p className="hero-subtitle font-parafont">
+            Building dreams, shaping skylines, delivering <br /> excellence across Pakistan.
+          </p>
+        </div>
       </div>
-      <div className="construction-row relative">
 
-        {visibleCards.map((card, index) => (
-          <div key={index} className="construction-card">
-            <img src={card.img} alt={card.title} className="card-icon" />
-            <h3 className="card-title">{card.title}</h3>
-            <p className="card-desc">{card.desc}</p>
-
-          </div>
-        ))}
+      {/* Services Section */}
+      <div className="services-section">
+        <h2 className="services-heading">Services</h2>
+        <div className="construction-row">
+          {visibleCards.map((card, index) => (
+            <div key={index} className="construction-card">
+              <img src={card.img} alt={card.title} className="card-icon" />
+              <h3 className="card-title">{card.title}</h3>
+              <p className="card-desc">{card.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
