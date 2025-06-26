@@ -4,9 +4,11 @@
 
 /* Remove default margins and padding from body to eliminate white space */
 body {
+   @apply bg-gray-50 text-gray-800 font-sans;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  height: 100%; /* Ensure body takes full height */
   overflow-x: hidden; /* Prevent horizontal overflow */
   background-color: #f5f5f5; /* Fallback color to avoid white flash */
 }

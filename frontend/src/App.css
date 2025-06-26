@@ -1,9 +1,9 @@
 /* Ensures layout is flex row: sidebar + main */
 .app-layout {
-  @apply flex;
+  @apply flex flex-col md:flex-row min-h-screen;
 }
 
 /* Content area shifts right on desktop (matches sidebar width) */
 .main-content {
-  @apply w-full ml-0 md:ml-60 p-4 flex-1 min-h-screen;
+  @apply w-full ml-0 md:ml-60 p-1 sm:p-2 md:p-4 flex-1 min-h-screen;
 }
