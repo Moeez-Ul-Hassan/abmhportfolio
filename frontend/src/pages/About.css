@@ -1,0 +1,81 @@
+/* About Section Styles */
+.about-section {
+  overflow-x: hidden;
+}
+
+/* Smooth transitions for hover effects */
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .about-header {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .grid-cols-1 > div {
+    margin-bottom: 3rem;
+  }
+}
+
+/* Card hover effects */
+.hover\\:shadow-lg:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Value tags animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-green-600 {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.bg-green-600:nth-child(1) { animation-delay: 0.1s; }
+.bg-green-600:nth-child(2) { animation-delay: 0.2s; }
+.bg-green-600:nth-child(3) { animation-delay: 0.3s; }
+.bg-green-600:nth-child(4) { animation-delay: 0.4s; }
+.bg-green-600:nth-child(5) { animation-delay: 0.5s; }
+
+
+
+
+/* ===================== */
+/* FOOTER SECTION STYLES */
+/* ===================== */
+
+.footer {
+  @apply bg-gray-900 text-white py-12 px-4;
+}
+
+.footer-grid {
+  @apply max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8;
+}
+
+.footer-heading {
+  @apply text-xl font-semibold mb-4;
+}
+
+.footer-links {
+  @apply space-y-2;
+}
+
+.footer-link {
+  @apply hover:text-green-400 transition-colors;
+}
+
+.social-icon {
+  @apply w-6 h-6 hover:text-green-400 transition-colors;
+}
+
+.copyright {
+  @apply border-t border-gray-700 mt-8 pt-8 text-center text-gray-400;
+}
+
+.address {
+  @apply not-italic;
+}

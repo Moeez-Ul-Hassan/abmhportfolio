@@ -1,0 +1,79 @@
+/* src/components/Footer.css */
+.footer {
+  background-color: #2d3748;
+  color: white;
+  padding: 2rem 0;
+  width: 100%;
+  margin-top: auto; /* Pushes footer to the bottom */
+  clear: both; /* Ensures it clears any floated elements like the sidebar */
+}
+
+.footer-container {
+  max-width: 1200px; /* Matches your main content width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footer-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.footer-link:hover {
+  color: #ddd;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #4a5568;
+  margin-top: 2rem;
+}
+
+.social-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #4a5568;
+}
+
+/* Ensure footer stays at the bottom */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adjust for sidebar */
+.main-content {
+  margin-left: 250px; /* Match the sidebar width if fixed */
+  flex: 1 0 auto; /* Allow main content to grow but not shrink */
+}

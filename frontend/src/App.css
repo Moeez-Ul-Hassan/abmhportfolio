@@ -1,9 +1,35 @@
-/* Ensures layout is flex row: sidebar + main */
+/* src/App.css */
 .app-layout {
-  @apply flex flex-col md:flex-row min-h-screen;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the layout takes full viewport height */
 }
 
-/* Content area shifts right on desktop (matches sidebar width) */
 .main-content {
-  @apply w-full ml-0 md:ml-60 p-1 sm:p-2 md:p-4 flex-1 min-h-screen;
+  margin-left: 0; /* Reset margin for mobile */
+  padding: 1rem; /* Consistent padding */
+  flex: 1 0 auto; /* Allow main content to grow but not shrink */
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    margin-left: 15rem; /* Adjust based on sidebar width (e.g., 240px) */
+  }
+}
+
+/* Ensure footer stays at the bottom and clears sidebar */
+footer {
+  width: 100%;
+  margin-top: auto; /* Pushes footer to the bottom */
+  clear: both; /* Clears any floated elements like sidebar */
+}
+
+/* Optional: Adjust sidebar width if needed */
+.sidebar {
+  width: 15rem; /* Match the margin-left of main-content */
+  position: fixed; /* or relative, depending on your Sidebar.jsx */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #1a202c; /* Match your sidebar color */
 }

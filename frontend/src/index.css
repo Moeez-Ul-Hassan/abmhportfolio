@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 /* Remove default margins and padding from body to eliminate white space */
 body {
    @apply bg-gray-50 text-gray-800 font-sans;
