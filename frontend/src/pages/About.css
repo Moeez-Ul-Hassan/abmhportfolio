@@ -1,48 +1,42 @@
-/* ===== ABOUT SECTION ===== */
+/* About Section Styles */
 .about-section {
-  @apply bg-white py-16 px-4;
+  overflow-x: hidden;
 }
 
-.about-header {
-  @apply text-center mb-12;
+/* Smooth transitions for hover effects */
+.transition-shadow {
+  transition: box-shadow 0.3s ease;
 }
 
-.subtitle {
-  @apply text-lg text-gray-600 mt-2;
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .about-header {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .grid-cols-1 > div {
+    margin-bottom: 3rem;
+  }
 }
 
-.underline {
-  @apply w-24 h-1 bg-green-500 mx-auto mt-4 rounded-full;
+/* Card hover effects */
+.hover\\:shadow-lg:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.about-content {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto;
+/* Value tags animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.about-img {
-  @apply rounded-xl shadow-lg w-full h-80 object-cover;
+.bg-green-600 {
+  animation: fadeIn 0.5s ease forwards;
 }
 
-.image-container {
-  @apply flex justify-center;
-}
-
-.list-features {
-  @apply mt-6 space-y-3 text-gray-700;
-}
-
-.list-features li {
-  @apply flex items-center gap-2 text-base;
-}
-
-.icon {
-  @apply text-green-600 text-lg;
-}
-
-.banner-wrapper {
-  @apply mt-16 max-w-5xl mx-auto;
-}
-
-.banner-img {
-  @apply w-full h-64 object-cover rounded-xl shadow-md;
-}
+.bg-green-600:nth-child(1) { animation-delay: 0.1s; }
+.bg-green-600:nth-child(2) { animation-delay: 0.2s; }
+.bg-green-600:nth-child(3) { animation-delay: 0.3s; }
+.bg-green-600:nth-child(4) { animation-delay: 0.4s; }
+.bg-green-600:nth-child(5) { animation-delay: 0.5s; }

@@ -1,0 +1,55 @@
+/* Contact Page Styles */
+.contact-hero {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.social-icon {
+  @apply w-12 h-12 rounded-full flex items-center justify-center transition duration-300;
+}
+
+/* Form Input Focus Effects */
+input:focus, textarea:focus {
+  @apply outline-none ring-2 ring-green-500 border-green-500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-hero {
+    @apply py-16;
+  }
+  
+  .contact-form {
+    @apply px-6 py-8;
+  }
+}
+
+/* Animation for Contact Cards */
+.contact-card {
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Map Container */
+.map-container {
+  filter: grayscale(20%) contrast(1.2) opacity(0.9);
+}
+
+/* Map Section Styling */
+.map-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.map-section img {
+  z-index: 1;
+}
+
+.map-section iframe {
+  z-index: 10;
+}
