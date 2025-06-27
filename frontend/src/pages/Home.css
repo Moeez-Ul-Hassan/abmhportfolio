@@ -64,18 +64,7 @@ body {
   @apply max-w-7xl mx-auto px-4;
 }
 
-/* ===== ABOUT SECTION ===== */
-.about-section {
-  @apply bg-gray-100 section-spacer;
-}
 
-.about-content {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto px-4;
-}
-
-.about-img {
-  @apply rounded-lg shadow-xl w-full h-64 md:h-96 object-cover;
-}
 
 /* ===== VISION/MISSION SECTION ===== */
 .vision-section {
@@ -109,16 +98,24 @@ body {
   @apply bg-gray-100 section-spacer;
 }
 
-.client-logo {
-  filter: grayscale(60%);
-  transition: all 0.3s ease-in-out;
-}
+
 
 .client-logo:hover {
   filter: grayscale(0%);
 }
 
-/* ===== CARD STYLES ===== */
+/* ===== CARD STYLES ===== 
+
+
+
+.clients-section {
+  @apply bg-white;
+}
+
+.client-logo {
+  @apply transition-transform duration-300 transform hover:scale-105 hover:-translate-y-1;
+}*/
+
 .construction-card {
   @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300;
   @apply hover:shadow-lg hover:-translate-y-1;

@@ -18,16 +18,20 @@ import ind from "../assets/icons/a.jpg";
 
 
 // Import section images
-import aboutUsImg from "../assets/about-us.jpg";
-import visionMissionImg from "../assets/vision-mission.jpg";
-import coreValuesImg from "../assets/core-values.jpg";
-import strategyImg from "../assets/strategy.jpg";
-import associatesImg from "../assets/associates.jpg";
-import clientsImg from "../assets/clients.jpg";
 import client1 from "../assets/client1.png";
 import client2 from "../assets/client2.png";
 import client3 from "../assets/client3.png";
 import client5 from "../assets/client5.png";
+
+/*const clients = [
+  { name: "National Logistics Cell", logo: nlc },
+  { name: "Sialkot International Airport", logo: sialkot },
+  { name: "Civil Aviation Authority", logo: caa },
+  { name: "Bahria Town", logo: bahria },
+  { name: "Capital Development Authority", logo: cda },
+  { name: "Multan Development Authority", logo: mda },
+];
+*/
 
 
 const constructionData = [
@@ -116,24 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="about-section">
-        <div className="about-content">
-          <div>
-            <h2 className="section-title">About ABMH</h2>
-            <p className="text-lg mb-4">
-              ABMH Construction Company Private Limited operates with a strong focus on customer 
-              satisfaction while maintaining uncompromising standards in quality and environmental 
-              responsibility.
-            </p>
-            <p>
-              With numerous successfully completed projects across Pakistan, we've earned our 
-              reputation as one of the most reliable brands in the construction sector.
-            </p>
-          </div>
-          <img src={clientsImg} alt="Construction Site" className="about-img" />
-        </div>
-      </section>
+
 
       {/* Vision/Mission Section */}
       <section className="vision-section">
