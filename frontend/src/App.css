@@ -2,34 +2,64 @@
 .app-layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the layout takes full viewport height */
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .main-content {
-  margin-left: 0; /* Reset margin for mobile */
-  padding: 1rem; /* Consistent padding */
-  flex: 1 0 auto; /* Allow main content to grow but not shrink */
+  margin-left: 0;
+  padding: 0rem;
+  flex: 1 0 auto;
+  width: 100%;
+  transition: margin-left 0.3s ease-in-out;
 }
 
 @media (min-width: 768px) {
   .main-content {
-    margin-left: 15rem; /* Adjust based on sidebar width (e.g., 240px) */
+    margin-left: 15rem;
   }
 }
 
-/* Ensure footer stays at the bottom and clears sidebar */
-footer {
-  width: 100%;
-  margin-top: auto; /* Pushes footer to the bottom */
-  clear: both; /* Clears any floated elements like sidebar */
+@media (max-width: 767px) {
+  .main-content {
+    margin-left: 0;
+  }
+  .main-content.active {
+    margin-left: 15rem;
+  }
 }
 
-/* Optional: Adjust sidebar width if needed */
+footer {
+  width: 100%;
+  margin-top: auto;
+  clear: both;
+}
+
 .sidebar {
-  width: 15rem; /* Match the margin-left of main-content */
-  position: fixed; /* or relative, depending on your Sidebar.jsx */
+  width: 15rem;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  background-color: #1a202c; /* Match your sidebar color */
+  background-color: #1a202c;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out, opacity 0.2s ease;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 15rem;
+  }
+  .sidebar:not(.active) {
+    transform: translateX(-100%);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sidebar {
+    width: 12rem;
+  }
+  .main-content {
+    margin-left: 12rem;
+  }
 }

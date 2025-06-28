@@ -6,7 +6,7 @@ body {
 }
 
 .section-spacer {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply py-8 sm:py-12 md:py-16;
 }
 
 .section-title {
@@ -126,39 +126,3 @@ body {
 }
 
 
-
-/* ===================== */
-/* FOOTER SECTION STYLES */
-/* ===================== */
-
-.footer {
-  @apply bg-gray-900 text-white py-12 px-4;
-}
-
-.footer-grid {
-  @apply max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8;
-}
-
-.footer-heading {
-  @apply text-xl font-semibold mb-4;
-}
-
-.footer-links {
-  @apply space-y-2;
-}
-
-.footer-link {
-  @apply hover:text-green-400 transition-colors;
-}
-
-.social-icon {
-  @apply w-6 h-6 hover:text-green-400 transition-colors;
-}
-
-.copyright {
-  @apply border-t border-gray-700 mt-8 pt-8 text-center text-gray-400;
-}
-
-.address {
-  @apply not-italic;
-}

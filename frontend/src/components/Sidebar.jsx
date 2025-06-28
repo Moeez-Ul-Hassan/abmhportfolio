@@ -1,27 +1,46 @@
-// Sidebar.jsx
+// src/components/Sidebar.jsx
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png"; // Ensure this matches your logo file
+import logo from "../assets/logo.png";
 import "./Sidebar.css";
+import { useState, useEffect, useRef } from "react";
 
-export default function Sidebar() {
+export default function Sidebar({ setIsSidebarOpen }) {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
 
-  // Function to determine if a link is active
   const getLinkClass = (path) =>
     `sidebar-link ${location.pathname === path ? "active" : ""}`;
 
+  // Sync local state with parent and handle outside clicks
+  useEffect(() => {
+    setIsSidebarOpen(isOpen); // Update parent state
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsOpen(false);
+        setIsSidebarOpen(false); // Sync with parent on close
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen, setIsSidebarOpen]);
+
   return (
-    <div className="sidebar">
-      {/* Logo + Company Name */}
+    <div className={`sidebar ${isOpen ? "active" : ""}`} ref={sidebarRef}>
+      <button
+        className="md:hidden absolute top-4 right-4 text-white z-50 bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-700 transition-colors duration-200"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? "✖" : "☰"}
+      </button>
+
       <div className="sidebar-header">
         <img src={logo} alt="ABMH Logo" className="sidebar-logo" />
         <h1 className="sidebar-title">ABMH</h1>
       </div>
 
-      {/* Green line under logo */}
       <div className="sidebar-separator" />
 
-      {/* Main Navigation */}
       <nav className="sidebar-nav">
         <Link to="/" className={getLinkClass("/")}>Home</Link>
         <Link to="/about" className={getLinkClass("/about")}>About</Link>
@@ -35,10 +54,8 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-      {/* Footer with Social Links */}
       <div className="sidebar-footer">
         <div className="social-links">
-          {/* GitHub Link with SVG Logo */}
           <a
             href="https://github.com"
             target="_blank"
@@ -54,7 +71,6 @@ export default function Sidebar() {
               <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.014-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.097-2.647 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 7.844c.85.004 1.705.114 2.504.336 1.909-1.295 2.747-1.026 2.747-1.026.545 1.377.201 2.394.099 2.647.64.698 1.03 1.591 1.03 2.682 0 3.841-2.337 4.687-4.565 4.935.359.308.678.916.678 1.846 0 1.332-.012 2.406-.012 2.734 0 .267.18.577.688.479C19.137 20.166 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
             </svg>
           </a>
-          {/* LinkedIn Link with SVG Logo */}
           <a
             href="https://linkedin.com"
             target="_blank"

@@ -23,15 +23,15 @@ import client2 from "../assets/client2.png";
 import client3 from "../assets/client3.png";
 import client5 from "../assets/client5.png";
 
-/*const clients = [
-  { name: "National Logistics Cell", logo: nlc },
-  { name: "Sialkot International Airport", logo: sialkot },
-  { name: "Civil Aviation Authority", logo: caa },
-  { name: "Bahria Town", logo: bahria },
-  { name: "Capital Development Authority", logo: cda },
-  { name: "Multan Development Authority", logo: mda },
+const clients = [
+  { name: "National Logistics Cell", logo: client1 },
+  { name: "Sialkot International Airport", logo: client2 },
+  { name: "Civil Aviation Authority", logo: client3 },
+  { name: "Bahria Town", logo: client2 },
+  { name: "Capital Development Authority", logo: client5 },
+  { name: "Multan Development Authority", logo: client2 },
 ];
-*/
+
 
 
 const constructionData = [
@@ -160,18 +160,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="clients-section">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title">Our Esteemed Clients</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <img src={client5} alt="DHA" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client1} alt="FWO" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client2} alt="NIA" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client3} alt="UNHCR" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-          </div>
+<section className="clients-section py-16">
+  <div className="max-w-7xl mx-auto px-4 text-center">
+    <h2 className="text-3xl font-bold mb-4">CLIENTS</h2>
+    <div className="w-16 h-1 bg-black mx-auto mb-8"></div>
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+      {clients.map((client, idx) => (
+        <div key={idx} className="text-center">
+          <img
+            src={client.logo}
+            alt={client.name}
+            className="client-logo mx-auto w-24 h-24 object-contain "
+          />
+          <p className="mt-2 text-sm font-semibold">{client.name}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
     </div>
   );
