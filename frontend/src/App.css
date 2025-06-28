@@ -27,6 +27,12 @@
   .main-content.active {
     margin-left: 15rem;
   }
+  .sidebar {
+    transform: translateX(0); /* Ensure visible when active */
+  }
+  .sidebar:not(.active) {
+    transform: translateX(-100%);
+  }
 }
 
 footer {
@@ -49,9 +55,7 @@ footer {
 @media (max-width: 767px) {
   .sidebar {
     width: 15rem;
-  }
-  .sidebar:not(.active) {
-    transform: translateX(-100%);
+    height: 100vh; /* Ensure full height on mobile */
   }
 }
 

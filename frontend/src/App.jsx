@@ -1,9 +1,9 @@
 // src/App.jsx
 
-// React Router imports for modern routing
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// React Router imports for routing between pages
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Layout components
+// Layout component
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 
@@ -18,41 +18,30 @@ import AdminPanel from "./pages/AdminPanel";
 import "./App.css";
 import { useState } from "react";
 
-// Define routes configuration
-const router = createBrowserRouter(
-  [
-    { path: "/", element: <Home /> },
-    { path: "/about", element: <About /> },
-    { path: "/projects", element: <Projects /> },
-    { path: "/contact", element: <Contact /> },
-    { path: "/admin", element: <AdminPanel /> },
-  ],
-  {
-    basename: "/abmhportfolio",
-    future: {
-      v7_startTransition: true,
-      v7_relativeSplatPath: true,
-    },
-  }
-);
-
 // Main App Component
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <RouterProvider router={router} fallbackElement={<p>Loading...</p>}>
+    <Router basename="/abmhportfolio">
+      {/* Layout wrapper: sidebar + main page content */}
       <div className="app-layout flex flex-col min-h-screen">
+        {/* Sidebar stays fixed on left (or top on mobile) */}
         <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
-        <main
-          className={`main-content w-full ml-0 md:ml-60 p-4 flex-1 ${
-            isSidebarOpen ? "active md:ml-60" : ""
-          } transition-[margin-left] duration-300 ease-in-out`}
-        >
+        {/* Main page content, pushed right by sidebar width, full height */}
+        <main className={`main-content w-full ml-0 md:ml-60 p-4 flex-1 ${isSidebarOpen ? "active" : ""}`}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminPanel />} />
+          </Routes>
+          {/* Footer placed inside main-content to ensure full width */}
           <Footer />
         </main>
       </div>
-    </RouterProvider>
+    </Router>
   );
 }
 
