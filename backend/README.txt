@@ -25,4 +25,6 @@ Dev + testing tools:
 
 3.Test the login functionality with testLogin.js:
 	node testLogin.js:
-	Note: This checks for the default user as created by createAdminUser.js, if you change createAdminUser.js, change testLogin.js appropriately or to test it with a user 			that you added manually you can user CURL, postman or again change the inputs inside testLogin.js. 
+	Note: This checks for the default user as created by createAdminUser.js, if you change createAdminUser.js, change testLogin.js appropriately or to test it with a user 			that you added manually you can user CURL, postman or again change the inputs inside testLogin.js.
+
+NOTE: If adding a user manually to the db, encrypt the password using bcrypt, and ensure your schema matches the orignal defined in backend\models\user.js.
