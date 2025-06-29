@@ -18,8 +18,8 @@ import visionBg from "../assets/bg.jpg";
 import UNHCR from "../assets/UNHCR.png";
 import DHA_BWP from "../assets/DHA_BWP.png";
 import Punjab_Govt from "../assets/Punjab_Govt.png";
-import client3 from "../assets/client3.png";
-import client5 from "../assets/client5.png";
+import client3 from "../assets/DHA_BWP.png";
+import client5 from "../assets/UNHCR.png";
 
 const clients = [
   { name: "United Nations High Commissioner for Refugees", logo: UNHCR },
