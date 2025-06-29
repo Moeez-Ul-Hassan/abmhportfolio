@@ -1,40 +1,40 @@
 import { useEffect, useState, useRef } from "react";
 import "./Home.css";
 
-import bg from "../assets/bg.jpg";
-import bg1 from "../assets/bg1.jpg";
-import bg2 from "../assets/bg2.jpg";
-import bg3 from "../assets/bg3.jpg";
-import bg4 from "../assets/bg4.jpg";
+import bg from "../assets/1.jpg";
+import bg1 from "../assets/2.jpg";
+import bg2 from "../assets/3.jpg";
+import bg3 from "../assets/4.jpg";
+import bg4 from "../assets/5.jpg";
 
-import roads from "../assets/icons/roadm.jpg";
-import building from "../assets/icons/buildingm.jpg";
+import roads from "../assets/icons/road.jpg";
+import building from "../assets/icons/building.jpg";
 import bridge from "../assets/icons/bridge.jpg";
-import tunnel from "../assets/icons/tunnelm.jpg";
-import ind from "../assets/icons/a.jpg";
+import tunnel from "../assets/icons/tunnel.jpg";
+import ind from "../assets/icons/indust.jpg";
 
 import visionBg from "../assets/bg.jpg";
 
-import UNHCR from "../assets/UNHCR.png";
-import DHA_BWP from "../assets/DHA_BWP.png";
-import Punjab_Govt from "../assets/Punjab_Govt.png";
-import client3 from "../assets/DHA_BWP.png";
-import client5 from "../assets/UNHCR.png";
+import c1 from "../assets/UNHCR.png";
+import c2 from "../assets/dhabwp.png";
+import c3 from "../assets/govpb.png";
+import c4 from "../assets/govak.png";
+import c5 from "../assets/caa.png";
 
 const clients = [
-  { name: "United Nations High Commissioner for Refugees", logo: UNHCR },
-  { name: "DHA Bahawalpur", logo: DHA_BWP },
-  { name: "Civil Aviation Authority", logo: client3 },
-  { name: "Punjab Government", logo: Punjab_Govt },
-  { name: "Capital Development Authority", logo: client5 },
-  { name: "Multan Development Authority", logo: Punjab_Govt },
+  { name: "United Nations High Commissioner for Refugees", logo: c1 },
+  { name: "DHA Bahawalpur", logo: c2 },
+  { name: "Civil Aviation Authority", logo: c5 },
+  { name: "Punjab Government", logo: c3 },
+  { name: "Capital Development Authority", logo: c4 },
+  { name: "Multan Development Authority", logo: c3 },
 ];
 
 const constructionData = [
   { title: "Roads", desc: "Highway and street infrastructure with national standards.", img: roads },
   { title: "Buildings", desc: "Residential and commercial structures of all scales.", img: building },
   { title: "Bridges", desc: "Strong and safe bridge development across terrains.", img: bridge },
-  { title: "Industrial", desc: "Factory and warehouse construction for industries.", img: ind },
+  { title: "Industries", desc: "Factory and warehouse construction for industries.", img: ind },
   { title: "Tunnels", desc: "Precision-engineered tunnels for transport and utilities.", img: tunnel },
 ];
 
@@ -105,13 +105,16 @@ export default function Home() {
           ))}
         </div>
         <div className="hero-overlay">
-          <h1 className="hero-title">ABMH CONSTRUCTION (PVT) LTD.</h1>
+        <h1 className="hero-title leading-none">
+          <span className="hero-title-main block">ABMH CONSTRUCTION</span>
+          <span className="hero-title-sub block -mt-2">(PVT) LTD.</span>
+        </h1>
+
           <p className="hero-subtitle">
             Building Pakistan's Future with Excellence and Integrity
           </p>
         </div>
       </section>
-
       <section className="services-section" id="services">
         <div className="services-container">
           <h2 className="section-title">Our Services</h2>
@@ -147,11 +150,11 @@ export default function Home() {
           <h2 className="section-title text-white">Vision & Mission</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-md text-gray-900">
-              <h3 className="text-2xl font-bold mb-4 text-blue-800">Our Vision</h3>
+              <h3 className="text-2xl font-bold mb-4 text-[#1A202C]">Our Vision</h3>
               <p>To be Pakistan's leading construction company through innovation, quality, and commitment to sustainable development.</p>
             </div>
             <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-md text-gray-900">
-              <h3 className="text-2xl font-bold mb-4 text-blue-800">Our Mission</h3>
+             <h3 className="text-2xl font-bold mb-4 text-[#1A202C]">Our Mission</h3>
               <p>To deliver exceptional construction services using cutting-edge technologies while prioritizing safety, quality, and environmental responsibility.</p>
             </div>
           </div>

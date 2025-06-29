@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Shadows+Into+Light&&family=Emilys+Candy&display=swap');
+
 /* ===== GLOBAL ===== */
 html {
   scroll-behavior: smooth;
@@ -44,14 +46,31 @@ body {
   @apply text-center z-10 px-4;
 }
 
+
 .hero-title {
-  @apply text-4xl md:text-6xl lg:text-7xl font-bold text-green-600 mb-4;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  @apply text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-4;
+  line-height: 1;
 }
 
+.hero-title-main {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #FFD700; /* Bright yellow */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title-sub {
+  font-family: 'Permanent Marker', cursive; /* or 'Shadows Into Light' */
+  color: #FFD700;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
 .hero-subtitle {
-  @apply text-xl md:text-2xl lg:text-3xl text-white max-w-3xl mx-auto;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  font-family: 'Emilys Candy', sans-serif;
+  color: #ebdcff;
+  @apply text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto mt-14;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== SERVICES SECTION ===== */
@@ -61,6 +80,46 @@ body {
 
 .services-container {
   @apply max-w-7xl mx-auto px-4;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 relative;
+  color: #1A202C ;
+}
+
+.section-title::after {
+  @apply block w-20 h-1 mx-auto mt-4;
+  background-color: #1A202C ;
+}
+
+.section-subtext {
+  color: #22C55E;
+  @apply text-lg md:text-xl text-center;
+}
+/* ===== CONSTRUCTION CARD OVERLAY ===== */
+.card-icon-container {
+  @apply relative;
+}
+
+.card-overlay-text {
+  @apply absolute inset-0 flex flex-col items-center justify-center;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.card-overlay-main {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #FFD700; /* Bright Yellow */
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card-overlay-sub {
+  font-family: 'Permanent Marker', cursive;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-top: 4px;
 }
 
 /* ===== VISION/MISSION SECTION ===== */
@@ -109,7 +168,7 @@ body {
 
 .client-logo {
   @apply transition-all duration-300;
-    width: 100%;
+  width: 100%;
   height: 100%;
   filter: grayscale(0%);
   opacity: 0.8;
@@ -126,7 +185,7 @@ body {
   .client-logo-container {
     @apply w-24 h-24;
   }
-  
+
   .client-logo {
     @apply max-h-12;
   }
@@ -139,17 +198,15 @@ body {
   @apply cursor-pointer transition-all duration-300 hover:scale-110;
 }
 
-/* Specific right arrow positioning */
 .card-nav.right {
-  @apply right-0; /* Add this line to position right arrow on the right */
+  @apply right-0;
 }
 
-/* Specific left arrow positioning */
 .card-nav.left {
-  @apply left-0; /* For consistency, though left-0 is often default */
+  @apply left-0;
 }
 
-/* ===== CARD STYLES =====  */
+/* ===== CARD STYLES ===== */
 .construction-card {
   @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300;
   @apply hover:shadow-lg hover:-translate-y-1;
