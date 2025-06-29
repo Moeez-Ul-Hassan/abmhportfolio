@@ -3,7 +3,7 @@
 // React Router imports for routing between pages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Layout component
+// Layout components
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 
@@ -22,22 +22,32 @@ import { useState } from "react";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+
+  
   return (
     <Router basename="/abmhportfolio">
-      {/* Layout wrapper: sidebar + main page content */}
       <div className="app-layout flex flex-col min-h-screen">
-        {/* Sidebar stays fixed on left (or top on mobile) */}
-        <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
-        {/* Main page content, pushed right by sidebar width, full height */}
-        <main className={`main-content w-full ml-0 md:ml-60 p-4 flex-1 ${isSidebarOpen ? "active" : ""}`}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminPanel />} />
-          </Routes>
-          {/* Footer placed inside main-content to ensure full width */}
+
+        {/* Sidebar with toggle control */}
+        <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+        {/* Main content area */}
+       <main
+  className={`main-content flex-1 transition-all duration-300 ${
+    isSidebarOpen || window.innerWidth >= 680 ? "ml-64" : "ml-0"
+  }`}
+>
+
+
+
+          <div className="p-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/admin" element={<AdminPanel />} />
+            </Routes>
+          </div>
           <Footer />
         </main>
       </div>

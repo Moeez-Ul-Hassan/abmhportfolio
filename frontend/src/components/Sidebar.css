@@ -1,85 +1,106 @@
-/* src/components/Sidebar.css */
+/* Sidebar container */
 .sidebar {
-  @apply fixed top-0 left-0 w-full md:w-60 h-16 sm:h-20 md:h-screen bg-gray-900 text-white flex md:flex-col items-center md:items-start justify-between md:justify-start px-4 sm:px-6 py-2 sm:py-4 shadow-lg z-50;
-  transform: translateX(0);
-  transition: transform 0.3s ease-in-out, opacity 0.2s ease;
-  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #1a202c;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 40;
+  transition: transform 0.3s ease-in-out;
+  width: 16rem;
 }
 
-.sidebar:not(.active) {
-  @apply md:transform-none transform -translate-x-full;
-  opacity: 0.9; /* Slight fade when closed */
-}
-
-.sidebar.active {
-  @apply transform translate-x-0;
-  opacity: 1;
-}
-
+/* Header with logo + title */
 .sidebar-header {
-  @apply md:border-none w-full md:w-auto flex items-center justify-center md:justify-start gap-2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  width: 100%;
+  justify-content: space-between;
 }
 
+/* Logo image */
 .sidebar-logo {
-  @apply w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 object-contain;
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
 }
 
+/* Company name */
 .sidebar-title {
-  @apply text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
 }
 
+/* Green separator */
 .sidebar-separator {
-  @apply hidden md:block h-1 w-full bg-green-500 rounded-full mt-4 sm:mt-6;
+  height: 4px;
+  width: 100%;
+  background-color: #22c55e;
+  border-radius: 9999px;
+  margin: 1rem 0;
 }
 
+/* Navigation */
 .sidebar-nav {
-  @apply flex md:flex-col gap-4 sm:gap-6 text-xs sm:text-sm md:text-base font-medium w-full md:mt-4 sm:mt-6 justify-center md:justify-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .sidebar-link {
-  @apply text-white hover:text-green-400 transition-colors duration-200 hover:scale-105;
+  color: white;
+  transition: color 300ms;
+}
+
+.sidebar-link:hover {
+  color: #22c55e;
 }
 
 .sidebar-link.active {
-  @apply text-blue-400 font-semibold;
+  color: #60a5fa;
+  font-weight: 600;
 }
 
 .admin-link {
-  @apply text-green-400 font-bold hover:text-green-300;
+  color: #22c55e;
+  font-weight: bold;
 }
 
+.admin-link:hover {
+  color: #4ade80;
+}
+
+/* Footer */
 .sidebar-footer {
-  @apply hidden md:flex flex-col items-start justify-end mt-auto w-full pt-4 sm:pt-6 border-t border-gray-700 gap-2 text-xs sm:text-sm text-gray-300;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  width: 100%;
+  border-top: 1px solid #374151;
+  color: #d1d5db;
+  font-size: 0.75rem;
 }
 
 .social-links {
-  @apply flex gap-2 sm:gap-4 pb-1 sm:pb-2;
+  display: flex;
+  gap: 1rem;
 }
 
 .footer-text {
-  @apply text-[8px] sm:text-[10px] leading-tight;
-}
-
-@media (max-width: 767px) {
-  .sidebar {
-    @apply h-14 py-1 px-2;
-  }
-  .sidebar-logo {
-    @apply w-10 h-10;
-  }
-  .sidebar-title {
-    @apply text-base;
-  }
-  .sidebar-nav {
-    @apply gap-2;
-  }
-  .sidebar-footer {
-    @apply hidden;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .sidebar {
-    @apply w-48;
-  }
+  font-size: 0.625rem;
+  line-height: 1rem;
 }
