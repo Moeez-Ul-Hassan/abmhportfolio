@@ -15,18 +15,19 @@ import ind from "../assets/icons/a.jpg";
 
 import visionBg from "../assets/bg.jpg";
 
-import client1 from "../assets/client1.png";
-import client2 from "../assets/client2.png";
+import UNHCR from "../assets/UNHCR.png";
+import DHA_BWP from "../assets/DHA_BWP.png";
+import Punjab_Govt from "../assets/Punjab_Govt.png";
 import client3 from "../assets/client3.png";
 import client5 from "../assets/client5.png";
 
 const clients = [
-  { name: "National Logistics Cell", logo: client1 },
-  { name: "Sialkot International Airport", logo: client2 },
+  { name: "United Nations High Commissioner for Refugees", logo: UNHCR },
+  { name: "DHA Bahawalpur", logo: DHA_BWP },
   { name: "Civil Aviation Authority", logo: client3 },
-  { name: "Bahria Town", logo: client2 },
+  { name: "Punjab Government", logo: Punjab_Govt },
   { name: "Capital Development Authority", logo: client5 },
-  { name: "Multan Development Authority", logo: client2 },
+  { name: "Multan Development Authority", logo: Punjab_Govt },
 ];
 
 const constructionData = [
@@ -171,37 +172,49 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="clients-section py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">CLIENTS</h2>
-          <div className="w-16 h-1 bg-black mx-auto mb-8" />
+      <section className="clients-section py-16 bg-gray-100">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Esteemed Clients</h2>
+      <div className="w-16 h-1 bg-green-600 mx-auto" />
+    </div>
 
-          <div className="flex transition-transform duration-1000 ease-in-out justify-center items-center overflow-hidden" ref={containerRef}>
-            <div className="flex gap-6">
-              {visibleClients.map((client, idx) => (
-                <div key={idx} className="text-center flex-shrink-0 w-24">
-                  <img
-                    src={client.logo}
-                    alt={client.name}
-                    className="client-logo mx-auto w-20 h-20 object-contain"
-                  />
-                  <p className="mt-2 text-xs font-medium">{client.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex justify-center gap-2 mt-6">
-            {Array.from({ length: totalSlides }).map((_, idx) => (
-              <button
-                key={idx}
-                className={`w-3 h-3 rounded-full ${clientPage === idx ? "bg-green-600" : "bg-gray-400"} transition-all duration-300`}
-                onClick={() => handleDotClick(idx)}
+    <div className="relative overflow-hidden px-10">
+      <div className="flex transition-transform duration-500 ease-in-out" ref={containerRef}>
+        <div className="flex gap-8 md:gap-12 px-4">
+          {visibleClients.map((client, idx) => (
+            <div 
+              key={idx} 
+              className="flex-shrink-0 flex flex-col items-center justify-center p- w-42 h-42 md:w-40 md:h-50 rounded-lg shadow-sm hover:shadow-md transition-all"
+            >
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="w-full h-20 md:h-24 object-contain object-center"
               />
-            ))}
-          </div>
+              <p className="mt-3 text-sm md:text-base font-medium text-gray-700 text-center">
+                {client.name}
+              </p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+
+    <div className="flex justify-center gap-2 mt-12">
+      {Array.from({ length: totalSlides }).map((_, idx) => (
+        <button
+          key={idx}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            clientPage === idx ? "bg-green-600 w-6" : "bg-gray-300"
+          }`}
+          onClick={() => handleDotClick(idx)}
+          aria-label={`Go to slide ${idx + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
     </div>
   );
 }

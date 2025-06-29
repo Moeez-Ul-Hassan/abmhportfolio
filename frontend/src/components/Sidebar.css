@@ -27,12 +27,17 @@
   justify-content: space-between;
 }
 
-/* Logo image */
 .sidebar-logo {
-  width: 3rem;
-  height: 3rem;
-  object-fit: contain;
+  @apply w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 object-contain outline-none;
 }
+
+/* Or globally for all images */
+img {
+  @apply outline-none;
+}
+
+
+
 
 /* Company name */
 .sidebar-title {

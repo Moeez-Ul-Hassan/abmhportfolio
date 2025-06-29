@@ -39,11 +39,9 @@ export default function Sidebar({ setIsSidebarOpen }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, setIsSidebarOpen, isDesktop]);
 
-  const toggleSidebar = () => {
-    const newState = !isOpen;
-    setIsOpen(newState);
-    setIsSidebarOpen(newState);
-  };
+const toggleSidebar = () => {
+  setIsOpen(!isOpen);
+};
 
   return (
     <>
@@ -54,15 +52,18 @@ export default function Sidebar({ setIsSidebarOpen }) {
           onClick={toggleSidebar}
           aria-label="Toggle sidebar"
         >
-          {isOpen ? (
-            <span className="text-white text-2xl">✖</span>
-          ) : (
-            <div className="space-y-1.5 w-6">
-              <span className="block h-0.5 w-6 bg-white"></span>
-              <span className="block h-0.5 w-6 bg-white"></span>
-              <span className="block h-0.5 w-6 bg-white"></span>
-            </div>
-          )}
+          {!isOpen && (
+  <button 
+    onClick={toggleSidebar}
+    className="md:hidden focus:outline-none"
+  >
+    <div className="space-y-1.5 w-6">
+      <span className="block h-0.5 w-6 bg-white"></span>
+      <span className="block h-0.5 w-6 bg-white"></span>
+      <span className="block h-0.5 w-6 bg-white"></span>
+    </div>
+  </button>
+)}
         </button>
       )}
 

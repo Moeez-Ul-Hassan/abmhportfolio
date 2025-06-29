@@ -104,60 +104,49 @@ body {
 
 /* ===== CLIENTS SECTION ===== */
 .clients-section {
-  @apply bg-gray-100 section-spacer;
-}
-
-.clients-carousel-container {
-  @apply relative overflow-hidden;
-}
-
-.clients-carousel-track {
-  display: flex;
-  gap: 1.5rem;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-}
-
-.client-slide {
-  flex: 0 0 auto;
-  width: 5rem;
-  height: 5rem;
+  @apply py-16 bg-gray-100;
 }
 
 .client-logo {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
-  margin: auto;
-  transition: transform 0.3s;
+  @apply transition-all duration-300;
+    width: 100%;
+  height: 100%;
+  filter: grayscale(0%);
+  opacity: 0.8;
 }
 
 .client-logo:hover {
   filter: grayscale(0%);
+  opacity: 1;
   transform: scale(1.05);
 }
 
-.clients-dots {
-  @apply flex justify-center gap-2 mt-6;
-}
-
-.clients-dots button {
-  @apply w-3 h-3 rounded-full transition-all duration-300;
-}
-
-.clients-dots button.active {
-  @apply bg-green-600;
-}
-
-.clients-dots button.inactive {
-  @apply bg-gray-400;
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .client-logo-container {
+    @apply w-24 h-24;
+  }
+  
+  .client-logo {
+    @apply max-h-12;
+  }
 }
 
 /* ===== NAVIGATION ARROWS ===== */
 .card-nav {
-  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white;
+  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-white;
   @apply rounded-full w-10 h-10 flex items-center justify-center shadow-lg;
   @apply cursor-pointer transition-all duration-300 hover:scale-110;
+}
+
+/* Specific right arrow positioning */
+.card-nav.right {
+  @apply right-0; /* Add this line to position right arrow on the right */
+}
+
+/* Specific left arrow positioning */
+.card-nav.left {
+  @apply left-0; /* For consistency, though left-0 is often default */
 }
 
 /* ===== CARD STYLES =====  */
