@@ -1,3 +1,4 @@
+/* ===== GLOBAL ===== */
 html {
   scroll-behavior: smooth;
 }
@@ -6,7 +7,7 @@ body {
 }
 
 .section-spacer {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply py-8 sm:py-12 md:py-16;
 }
 
 .section-title {
@@ -22,7 +23,6 @@ body {
 .home-hero {
   @apply w-full h-screen relative flex items-center justify-center;
   overflow: hidden;
-  
 }
 
 .hero-bg-container {
@@ -31,7 +31,6 @@ body {
 
 .hero-bg {
   @apply absolute inset-0 bg-cover bg-center;
-  //filter: brightness(0.7);
   transition: opacity 1.5s ease-in-out;
   opacity: 0;
   filter: grayscale(60%);
@@ -64,11 +63,30 @@ body {
   @apply max-w-7xl mx-auto px-4;
 }
 
-
-
 /* ===== VISION/MISSION SECTION ===== */
 .vision-section {
-  @apply bg-blue-50 section-spacer;
+  @apply relative section-spacer text-white;
+  background-image: url('../assets/vision.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.vision-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.vision-section > * {
+  position: relative;
+  z-index: 10;
+}
+
+.vision-section .bg-white {
+  @apply bg-opacity-90 text-gray-900;
 }
 
 /* ===== CORE VALUES SECTION ===== */
@@ -85,37 +103,53 @@ body {
 }
 
 /* ===== CLIENTS SECTION ===== */
+.clients-section {
+  @apply py-16 bg-gray-100;
+}
 
+.client-logo {
+  @apply transition-all duration-300;
+    width: 100%;
+  height: 100%;
+  filter: grayscale(0%);
+  opacity: 0.8;
+}
+
+.client-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .client-logo-container {
+    @apply w-24 h-24;
+  }
+  
+  .client-logo {
+    @apply max-h-12;
+  }
+}
 
 /* ===== NAVIGATION ARROWS ===== */
 .card-nav {
-  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white;
+  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-white;
   @apply rounded-full w-10 h-10 flex items-center justify-center shadow-lg;
   @apply cursor-pointer transition-all duration-300 hover:scale-110;
 }
 
-.clients-section {
-  @apply bg-gray-100 section-spacer;
+/* Specific right arrow positioning */
+.card-nav.right {
+  @apply right-0; /* Add this line to position right arrow on the right */
 }
 
-
-
-.client-logo:hover {
-  filter: grayscale(0%);
+/* Specific left arrow positioning */
+.card-nav.left {
+  @apply left-0; /* For consistency, though left-0 is often default */
 }
 
-/* ===== CARD STYLES ===== 
-
-
-
-.clients-section {
-  @apply bg-white;
-}
-
-.client-logo {
-  @apply transition-transform duration-300 transform hover:scale-105 hover:-translate-y-1;
-}*/
-
+/* ===== CARD STYLES =====  */
 .construction-card {
   @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300;
   @apply hover:shadow-lg hover:-translate-y-1;
@@ -123,42 +157,4 @@ body {
 
 .card-icon {
   @apply w-full h-48 object-cover;
-}
-
-
-
-/* ===================== */
-/* FOOTER SECTION STYLES */
-/* ===================== */
-
-.footer {
-  @apply bg-gray-900 text-white py-12 px-4;
-}
-
-.footer-grid {
-  @apply max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8;
-}
-
-.footer-heading {
-  @apply text-xl font-semibold mb-4;
-}
-
-.footer-links {
-  @apply space-y-2;
-}
-
-.footer-link {
-  @apply hover:text-green-400 transition-colors;
-}
-
-.social-icon {
-  @apply w-6 h-6 hover:text-green-400 transition-colors;
-}
-
-.copyright {
-  @apply border-t border-gray-700 mt-8 pt-8 text-center text-gray-400;
-}
-
-.address {
-  @apply not-italic;
 }

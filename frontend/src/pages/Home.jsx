@@ -1,38 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./Home.css";
 
-// Import background images
 import bg from "../assets/bg.jpg";
 import bg1 from "../assets/bg1.jpg";
 import bg2 from "../assets/bg2.jpg";
 import bg3 from "../assets/bg3.jpg";
 import bg4 from "../assets/bg4.jpg";
 
-// Import service icons
 import roads from "../assets/icons/roadm.jpg";
 import building from "../assets/icons/buildingm.jpg";
 import bridge from "../assets/icons/bridge.jpg";
 import tunnel from "../assets/icons/tunnelm.jpg";
 import ind from "../assets/icons/a.jpg";
 
+import visionBg from "../assets/bg.jpg";
 
-
-// Import section images
-import client1 from "../assets/client1.png";
-import client2 from "../assets/client2.png";
+import UNHCR from "../assets/UNHCR.png";
+import DHA_BWP from "../assets/DHA_BWP.png";
+import Punjab_Govt from "../assets/Punjab_Govt.png";
 import client3 from "../assets/client3.png";
 import client5 from "../assets/client5.png";
 
-/*const clients = [
-  { name: "National Logistics Cell", logo: nlc },
-  { name: "Sialkot International Airport", logo: sialkot },
-  { name: "Civil Aviation Authority", logo: caa },
-  { name: "Bahria Town", logo: bahria },
-  { name: "Capital Development Authority", logo: cda },
-  { name: "Multan Development Authority", logo: mda },
+const clients = [
+  { name: "United Nations High Commissioner for Refugees", logo: UNHCR },
+  { name: "DHA Bahawalpur", logo: DHA_BWP },
+  { name: "Civil Aviation Authority", logo: client3 },
+  { name: "Punjab Government", logo: Punjab_Govt },
+  { name: "Capital Development Authority", logo: client5 },
+  { name: "Multan Development Authority", logo: Punjab_Govt },
 ];
-*/
-
 
 const constructionData = [
   { title: "Roads", desc: "Highway and street infrastructure with national standards.", img: roads },
@@ -53,35 +49,55 @@ const coreValues = [
   { title: "Teamwork", desc: "Collaborating to achieve excellence" }
 ];
 
-
-
 export default function Home() {
   const [currentBg, setCurrentBg] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
 
+  const [clientPage, setClientPage] = useState(0);
+  const [autoScrollIndex, setAutoScrollIndex] = useState(0);
+  const containerRef = useRef(null);
+
+  const logosPerPage = window.innerWidth >= 1024 ? 5 : window.innerWidth >= 768 ? 4 : 3;
+  const totalSlides = Math.ceil(clients.length / logosPerPage);
+
+  const getVisibleClients = (index) => {
+    const start = index * logosPerPage;
+    return clients.slice(start, start + logosPerPage);
+  };
+
+  const handleDotClick = (index) => {
+    setClientPage(index);
+    setAutoScrollIndex(index);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentBg(prev => (prev + 1) % backgroundImages.length);
+      setAutoScrollIndex((prev) => (prev + 1) % totalSlides);
+      setClientPage((prev) => (prev + 1) % totalSlides);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [totalSlides]);
+
+  const visibleClients = getVisibleClients(clientPage);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % backgroundImages.length);
     }, 8000);
     return () => clearInterval(interval);
   }, []);
 
-  const showNextCards = () => setCardIndex(prev => (prev + 1) % (constructionData.length - 2));
-  const showPrevCards = () => setCardIndex(prev => (prev - 1 + constructionData.length - 2) % (constructionData.length - 2));
+  const showNextCards = () => setCardIndex((prev) => (prev + 1) % (constructionData.length - 2));
+  const showPrevCards = () => setCardIndex((prev) => (prev - 1 + constructionData.length - 2) % (constructionData.length - 2));
 
   const visibleCards = constructionData.slice(cardIndex, cardIndex + 3);
 
-
-
-
-
   return (
     <div className="overflow-x-hidden">
-      {/* Hero Section */}
       <section className="home-hero">
         <div className="hero-bg-container">
           {backgroundImages.map((bg, i) => (
-            <div 
+            <div
               key={i}
               className={`hero-bg ${i === currentBg ? 'active' : ''}`}
               style={{ backgroundImage: `url(${bg})` }}
@@ -96,14 +112,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
       <section className="services-section" id="services">
         <div className="services-container">
           <h2 className="section-title">Our Services</h2>
           <div className="relative">
-
-            <button className="card-nav left absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow hover:bg-gray-100 z-10" onClick={showPrevCards}>←</button>
-
+            <button className="card-nav left" onClick={showPrevCards}>❮</button>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {visibleCards.map((card, i) => (
                 <div key={i} className="construction-card">
@@ -115,37 +128,36 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button className="card-nav right absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow hover:bg-gray-100 z-10" onClick={showNextCards}>→</button>
+            <button className="card-nav right" onClick={showNextCards}>❯</button>
           </div>
         </div>
       </section>
 
-
-
-      {/* Vision/Mission Section */}
-      <section className="vision-section">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title">Vision & Mission</h2>
+      <section
+        className="vision-section relative section-spacer text-white"
+        style={{
+          backgroundImage: `url(${visionBg})`,
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-0" />
+        <div className="relative max-w-7xl mx-auto px-4 z-10">
+          <h2 className="section-title text-white">Vision & Mission</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-md">
+            <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-md text-gray-900">
               <h3 className="text-2xl font-bold mb-4 text-blue-800">Our Vision</h3>
-              <p>
-                To be Pakistan's leading construction company through innovation, quality, 
-                and commitment to sustainable development.
-              </p>
+              <p>To be Pakistan's leading construction company through innovation, quality, and commitment to sustainable development.</p>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-md">
+            <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-md text-gray-900">
               <h3 className="text-2xl font-bold mb-4 text-blue-800">Our Mission</h3>
-              <p>
-                To deliver exceptional construction services using cutting-edge technologies while 
-                prioritizing safety, quality, and environmental responsibility.
-              </p>
+              <p>To deliver exceptional construction services using cutting-edge technologies while prioritizing safety, quality, and environmental responsibility.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values Section */}
       <section className="values-section">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="section-title">Core Values</h2>
@@ -160,19 +172,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="clients-section">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title">Our Esteemed Clients</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <img src={client5} alt="DHA" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client1} alt="FWO" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client2} alt="NIA" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-            <img src={client3} alt="UNHCR" className="client-logo transform hover:scale-105 hover:-translate-y-1" />
-          </div>
-        </div>
-      </section>
+      <section className="clients-section py-16 bg-gray-100">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Esteemed Clients</h2>
+      <div className="w-16 h-1 bg-green-600 mx-auto" />
+    </div>
 
+    <div className="relative overflow-hidden px-10">
+      <div className="flex transition-transform duration-500 ease-in-out" ref={containerRef}>
+        <div className="flex gap-8 md:gap-12 px-4">
+          {visibleClients.map((client, idx) => (
+            <div 
+              key={idx} 
+              className="flex-shrink-0 flex flex-col items-center justify-center p- w-42 h-42 md:w-40 md:h-50 rounded-lg shadow-sm hover:shadow-md transition-all"
+            >
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="w-full h-20 md:h-24 object-contain object-center"
+              />
+              <p className="mt-3 text-sm md:text-base font-medium text-gray-700 text-center">
+                {client.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div className="flex justify-center gap-2 mt-12">
+      {Array.from({ length: totalSlides }).map((_, idx) => (
+        <button
+          key={idx}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            clientPage === idx ? "bg-green-600 w-6" : "bg-gray-300"
+          }`}
+          onClick={() => handleDotClick(idx)}
+          aria-label={`Go to slide ${idx + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
     </div>
   );
 }
