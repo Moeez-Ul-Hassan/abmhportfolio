@@ -1,0 +1,52 @@
+/* Projects Page Styles */
+.projects-section {
+  min-height: 100vh;
+  /* Remove or comment out the background gradient to let the header's green background show */
+  /* background: linear-gradient(180deg, #f0fdf4 0%, #fff 60%, #e0f2fe 100%); */
+}
+
+.project-counter {
+  transition: color 0.3s, transform 0.3s;
+  animation: counter-pop 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes counter-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.group-animate-fade-in-up {
+  animation: fade-in-up 0.9s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-project-fade-in {
+  animation: project-fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes project-fade-in {
+  0% { opacity: 0; transform: scale(0.92) translateY(40px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.project-card {
+  box-shadow: 0 6px 32px 0 rgba(34,197,94,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
+  border-radius: 1.5rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: #fff;
+}
+.project-card:hover {
+  box-shadow: 0 12px 40px 0 rgba(34,197,94,0.16), 0 2px 8px 0 rgba(0,0,0,0.08);
+  transform: translateY(-6px) scale(1.03);
+} 

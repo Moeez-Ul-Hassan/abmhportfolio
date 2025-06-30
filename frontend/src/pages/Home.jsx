@@ -107,43 +107,48 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
-      <section className="home-hero">
-        <div className="hero-bg-container">
+      <section className="home-hero relative flex items-center justify-center min-h-screen overflow-hidden">
+        <div className="absolute inset-0 z-0">
           {[bg, bg1, bg2, bg3, bg4].map((bg, i) => (
             <div
               key={i}
-              className={`hero-bg ${i === currentBg ? "active" : ""}`}
+              className={`hero-bg transition-opacity duration-1000 ${i === currentBg ? "opacity-100" : "opacity-0"}`}
               style={{ backgroundImage: `url(${bg})` }}
             />
           ))}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-700/80 via-green-900/60 to-black/80 animate-gradient-move" />
         </div>
-        <div className="hero-overlay">
-          <h1 className="hero-title leading-none">
+        <div className="hero-overlay relative z-10 flex flex-col items-center justify-center w-full px-4 py-24 animate-fade-in">
+          <h1 className="hero-title leading-none drop-shadow-xl animate-slide-down">
             <span className="hero-title-main block">ABMH CONSTRUCTION</span>
             <span className="hero-title-sub block -mt-2">(PVT) LTD.</span>
           </h1>
-          <p className="hero-subtitle">
+          <p className="hero-subtitle mb-8 mt-6 max-w-2xl mx-auto animate-fade-in delay-200">
             Building Pakistan's Future with Excellence and Integrity
           </p>
+          <a href="#services" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-gray-900 font-bold text-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 animate-pop-in mt-4">Explore Our Services</a>
         </div>
       </section>
 
-      <section className="services-section" id="services">
+      <section id="services" className="services-section relative bg-white py-20">
         <div className="services-container">
-          <h2 className="section-title">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="section-title text-gray-900">Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
             {visibleServiceCards.map((card, i) => (
               <div
                 key={i}
-                className="construction-card animate-fade-slide-up"
+                className="construction-card animate-fade-slide-up bg-white/90 border border-green-100 shadow-xl rounded-2xl overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group"
                 style={{
                   animationDelay: `${i * 0.2}s`,
                   animationFillMode: "both"
                 }}
               >
-                <img src={card.img} alt={card.title} className="card-icon" />
+                <div className="relative overflow-hidden">
+                  <img src={card.img} alt={card.title} className="card-icon w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300" />
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-700 animate-width-grow" />
+                </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-green-700 transition-colors duration-300">{card.title}</h3>
                   <p className="text-gray-600">{card.desc}</p>
                 </div>
               </div>
@@ -153,7 +158,7 @@ export default function Home() {
       </section>
 
       <section
-        className="vision-section relative py-12 md:py-16 text-white"
+        className="vision-section relative py-20 md:py-28 text-white flex items-center"
         style={{
           backgroundImage: `url(${visionBg})`,
           backgroundAttachment: "fixed",
@@ -161,18 +166,18 @@ export default function Home() {
           backgroundPosition: "center"
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50 z-0" />
-        <div className="relative max-w-7xl mx-auto px-4 z-10">
-          <h2 className="section-title text-white mb-4">Vision & Mission</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-md text-gray-900">
-              <h3 className="text-2xl font-bold mb-4 text-[#1A202C]">Our Vision</h3>
+        <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
+        <div className="relative max-w-7xl mx-auto px-4 z-10 w-full">
+          <h2 className="section-title text-white mb-8">Vision & Mission</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="bg-white/90 p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in">
+              <h3 className="text-2xl font-bold mb-4 text-green-700">Our Vision</h3>
               <p>
                 To be Pakistan's leading construction company through innovation, quality, and commitment to sustainable development.
               </p>
             </div>
-            <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-md text-gray-900">
-              <h3 className="text-2xl font-bold mb-4 text-[#1A202C]">Our Mission</h3>
+            <div className="bg-white/90 p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in delay-200">
+              <h3 className="text-2xl font-bold mb-4 text-green-700">Our Mission</h3>
               <p>
                 To deliver exceptional construction services using cutting-edge technologies while prioritizing safety, quality, and environmental responsibility.
               </p>
@@ -181,46 +186,46 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="values-section">
+      <section className="values-section bg-white py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title">Core Values</h2>
-          <div className="values-grid">
+          <h2 className="section-title text-gray-900">Core Values</h2>
+          <div className="values-grid mt-10">
             {visibleCoreValues.map((value, i) => (
-              <div key={i} className="value-card animate-fade-slide-up">
-                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-                <p>{value.desc}</p>
+              <div key={i} className="value-card animate-fade-slide-up bg-white/90 border-l-4 border-green-500 shadow-lg hover:shadow-2xl transition-all duration-300">
+                <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-green-700 transition-colors duration-300">{value.title}</h3>
+                <p className="text-gray-700">{value.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="clients-section py-16 bg-gray-100">
+      <section className="clients-section py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Esteemed Clients</h2>
-            <div className="w-16 h-1 bg-green-600 mx-auto" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Esteemed Clients</h2>
+            <div className="w-16 h-1 bg-green-600 mx-auto rounded-full" />
           </div>
 
-          <div className="relative overflow-hidden px-10">
-            <div className="flex transition-transform duration-500 ease-in-out" ref={containerRef}>
-              <div className="flex gap-8 md:gap-12 px-4">
-                {visibleClients.map((client, idx) => (
-                  <div
-                    key={idx}
-                    className="flex-shrink-0 flex flex-col items-center justify-center w-42 h-42 md:w-40 md:h-50 rounded-lg shadow-sm hover:shadow-md transition-all"
-                  >
+          <div className="relative overflow-x-auto px-2 md:px-10">
+            <div className="flex transition-transform duration-500 ease-in-out gap-6 md:gap-10" ref={containerRef}>
+              {visibleClients.map((client, idx) => (
+                <div
+                  key={idx}
+                  className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-md bg-white/90 border border-green-100 hover:shadow-xl transition-all animate-pop-in"
+                >
+                  <div className="flex items-center justify-center w-24 h-20 md:w-32 md:h-24 bg-white rounded-lg overflow-hidden shadow-inner">
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="w-full h-20 md:h-24 object-contain object-center"
+                      className="object-contain object-center max-h-16 md:max-h-20 w-auto h-auto client-logo"
                     />
-                    <p className="mt-3 text-sm md:text-base font-medium text-gray-700 text-center">
-                      {client.name}
-                    </p>
                   </div>
-                ))}
-              </div>
+                  <p className="mt-3 text-xs md:text-base font-medium text-gray-700 text-center">
+                    {client.name}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 

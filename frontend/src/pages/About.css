@@ -1,40 +1,26 @@
 /* About Section Styles */
 .about-section {
-  overflow-x: hidden;
+  @apply min-h-screen bg-white overflow-x-hidden;
 }
 
-/* Smooth transitions for hover effects */
-.transition-shadow {
-  transition: box-shadow 0.3s ease;
+.about-header {
+  @apply py-20 bg-gradient-to-r from-green-600 to-green-800 text-white text-center;
 }
 
-/* Responsive spacing */
-@media (max-width: 768px) {
-  .about-header {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  
-  .grid-cols-1 > div {
-    margin-bottom: 3rem;
-  }
+.grid-cols-1 > div {
+  margin-bottom: 3rem;
 }
 
 /* Card hover effects */
-.hover\\:shadow-lg:hover {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Value tags animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.hover\:shadow-xl:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
 }
 
 .bg-green-600 {
-  animation: fadeIn 0.5s ease forwards;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
+/* Value tags animation */
 .bg-green-600:nth-child(1) { animation-delay: 0.1s; }
 .bg-green-600:nth-child(2) { animation-delay: 0.2s; }
 .bg-green-600:nth-child(3) { animation-delay: 0.3s; }
