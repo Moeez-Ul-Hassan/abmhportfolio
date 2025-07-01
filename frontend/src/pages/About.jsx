@@ -1,9 +1,29 @@
 import { FaCheckCircle, FaHardHat, FaUserTie, FaUsers } from "react-icons/fa";
 import siteImg from "../assets/clients.jpg"; // Use a high-quality team image
 import valueImg from "../assets/bg5.jpg"; // Use a site/project image
+import cert1 from '../assets/se.jpeg';
+import cert2 from '../assets/pec.jpeg';
+import cert3 from '../assets/fbr.jpeg';
 import "./About.css";
 
-
+// Example certificate data (replace img with your actual certificate image paths from src/assets)
+const certificates = [
+  {
+    title: "Clearance Certificate",
+    description: "Secuirity Exchange Clearance",
+    img: cert1
+  },
+  {
+    title: "PEC Registration",
+    description: "Pakistan Engineering Council Registered",
+    img: cert2
+  },
+  {
+    title: "FBR Clearance",
+    description: "Tax Payer and Clearance of all Assets",
+    img: cert3
+  }
+];
 
 export default function About() {
   // Management team data
@@ -53,7 +73,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 transition-opacity duration-700">About ABMH Construction</h1>
           <p className="text-xl md:text-2xl mb-6 transition-opacity duration-700">Shaping Pakistan's Infrastructure with Integrity & Innovation</p>
-          <div className="w-24 h-1 bg-white mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-green-400 mx-auto rounded-full" />
         </div>
       </div>
 
@@ -153,6 +173,25 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        {/* Certifications Section */}
+        <section className="py-16 md:py-20">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Certifications</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Our company is recognized and certified for quality, safety, and engineering excellence.</p>
+          </div>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            {certificates.map((cert, idx) => (
+              <div key={idx} className="certificate-card bg-white rounded-2xl shadow-lg hover:shadow-green-200 transition-all duration-300 flex flex-col items-center p-8">
+                <div className="w-full h-48 bg-gray-100 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+                  <img src={cert.img} alt={cert.title} className="object-contain h-full w-auto" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 text-center mb-2">{cert.title}</h3>
+                <p className="text-gray-600 text-center text-sm">{cert.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   );

@@ -130,14 +130,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="services-section relative bg-white py-20">
+      <section id="services" className="services-section relative bg-[#23272f] py-20">
         <div className="services-container">
-          <h2 className="section-title text-gray-900">Our Services</h2>
+          <h2 className="section-title text-white">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
             {visibleServiceCards.map((card, i) => (
               <div
                 key={i}
-                className="construction-card animate-fade-slide-up bg-white/90 border border-green-100 shadow-xl rounded-2xl overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group"
+                className="construction-card animate-fade-slide-up bg-[#23272f] border border-green-100 shadow-xl rounded-2xl overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group text-white"
                 style={{
                   animationDelay: `${i * 0.2}s`,
                   animationFillMode: "both"
@@ -170,15 +170,15 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 z-10 w-full">
           <h2 className="section-title text-white mb-8">Vision & Mission</h2>
           <div className="grid md:grid-cols-2 gap-10">
-            <div className="bg-white/90 p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in">
+            <div className="bg-white p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in">
               <h3 className="text-2xl font-bold mb-4 text-green-700">Our Vision</h3>
-              <p>
+              <p className="text-gray-700">
                 To be Pakistan's leading construction company through innovation, quality, and commitment to sustainable development.
               </p>
             </div>
-            <div className="bg-white/90 p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in delay-200">
+            <div className="bg-white p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in delay-200">
               <h3 className="text-2xl font-bold mb-4 text-green-700">Our Mission</h3>
-              <p>
+              <p className="text-gray-700">
                 To deliver exceptional construction services using cutting-edge technologies while prioritizing safety, quality, and environmental responsibility.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default function Home() {
               {visibleClients.map((client, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-md bg-white/90 border border-green-100 hover:shadow-xl transition-all animate-pop-in"
+                  className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-md bg-white border border-green-100 hover:shadow-xl transition-all animate-pop-in"
                 >
                   <div className="flex items-center justify-center w-24 h-20 md:w-32 md:h-24 bg-white rounded-lg overflow-hidden shadow-inner">
                     <img

@@ -8,7 +8,6 @@ html {
 
 /* Remove default margins and padding from body to eliminate white space */
 body {
-  /* Removed @apply bg-gray-50 to fix Tailwind circular dependency error */
   color: #1f2937; /* text-gray-800 */
   font-family: theme('fontFamily.sans');
   margin: 0;
@@ -16,5 +15,5 @@ body {
   min-height: 100vh;
   height: 100%; /* Ensure body takes full height */
   overflow-x: hidden; /* Prevent horizontal overflow */
-  background-color: #f5f5f5; /* Fallback color to avoid white flash */
+  background-color: #1A202C; /* Set dark background */
 }

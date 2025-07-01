@@ -27,8 +27,23 @@
 .bg-green-600:nth-child(4) { animation-delay: 0.4s; }
 .bg-green-600:nth-child(5) { animation-delay: 0.5s; }
 
-
-
+.certificate-card {
+  box-shadow: 0 6px 32px 0 rgba(34,197,94,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
+  border-radius: 1.25rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+  background: #fff;
+}
+.certificate-card:hover {
+  box-shadow: 0 12px 40px 0 rgba(34,197,94,0.16), 0 2px 8px 0 rgba(0,0,0,0.08);
+  transform: translateY(-6px) scale(1.03);
+}
+.certificate-card img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  background: #f3f4f6;
+}
 
 /* ===================== */
 /* FOOTER SECTION STYLES */
