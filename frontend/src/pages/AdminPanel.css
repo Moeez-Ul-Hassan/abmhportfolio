@@ -1,0 +1,264 @@
+/* AdminPanel.css */
+
+.admin-panel-root {
+  min-height: 100vh;
+  background: #f6f7fa;
+  padding: 0 0.5rem;
+}
+
+.admin-logout-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #22223b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.admin-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  padding: 0.5rem 2rem;
+}
+
+.admin-navbar-btn {
+  background: transparent;
+  color: #22223b;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 4px;
+  transition: background 0.2s, color 0.2s;
+  flex: 1;
+  min-width: 100px;
+  max-width: 200px;
+  cursor: pointer;
+}
+.admin-navbar-btn.active {
+  background: #22223b;
+  color: #fff;
+}
+
+.admin-content {
+  max-width: 700px;
+  margin: 2rem auto 0 auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  min-height: 200px;
+}
+
+.admin-projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.admin-btn {
+  background: #22223b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.admin-btn.warning {
+  background: #fbbf24;
+  color: #22223b;
+}
+.admin-btn.danger {
+  background: #ef4444;
+  color: #fff;
+}
+.admin-btn.info {
+  background: #2563eb;
+  color: #fff;
+}
+
+.admin-projects-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .admin-projects-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.admin-project-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.admin-project-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.admin-project-desc {
+  color: #555;
+  font-size: 0.97rem;
+}
+.admin-project-images {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+}
+.admin-project-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.admin-workorder-link {
+  margin-top: 0.5rem;
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
+.admin-project-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.admin-project-expenses {
+  margin-top: 0.5rem;
+  font-size: 0.93rem;
+  color: #444;
+}
+
+/* Modal styles */
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.admin-modal {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+.admin-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.3rem;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.admin-modal-title {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.admin-modal-input,
+.admin-modal-textarea {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.admin-modal-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  margin-top: 0.5rem;
+  font-size: 0.97rem;
+  font-weight: 500;
+}
+.admin-modal-img-preview {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 0.3rem;
+}
+.admin-modal-bill-preview {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.admin-expenses-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+.admin-expense-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.5rem;
+  background: #f3f4f6;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.admin-expense-title {
+  font-weight: 500;
+  font-size: 1rem;
+}
+.admin-expense-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+.admin-expense-bill-link {
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: 0.93rem;
+}
+
+@media (max-width: 600px) {
+  .admin-content {
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+  .admin-modal {
+    padding: 1rem;
+    max-width: 98vw;
+  }
+  .admin-projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+} 

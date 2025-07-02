@@ -1,12 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const authRoutes = require('./routes/authRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const path = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
+// Serve uploaded files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// File upload endpoint
+app.use('/api', projectRoutes);
 
 module.exports = app;
