@@ -29,8 +29,6 @@ const clients = [
   { name: "Punjab Government", logo: c3 },
   { name: "Multan Development Authority", logo: c3 },
   { name: "WASO PAKISTAN ATOMIC ENERGY", logo: c6 },
-  { name: "WASO PAKISTAN ATOMIC ENERGY", logo: c6 },
-  
 ];
 
 const constructionData = [
@@ -57,7 +55,12 @@ export default function Home() {
   const [coreValueIndex, setCoreValueIndex] = useState(0);
   const containerRef = useRef(null);
 
-  const logosPerPage = window.innerWidth >= 1024 ? 5 : window.innerWidth >= 768 ? 4 : 3;
+  const logoSizeClass = "w-24 h-20 md:w-32 md:h-24";
+
+  let logosPerPage = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 3 : 2;
+  if (clients.length % logosPerPage === 1 && clients.length > logosPerPage) {
+    logosPerPage -= 1;
+  }
   const totalSlides = Math.ceil(clients.length / logosPerPage);
 
   useEffect(() => {
@@ -70,14 +73,14 @@ export default function Home() {
   useEffect(() => {
     const serviceInterval = setInterval(() => {
       setServiceIndex((prev) => (prev + 3) % constructionData.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(serviceInterval);
   }, []);
 
   useEffect(() => {
     const clientInterval = setInterval(() => {
       setClientPage((prev) => (prev + 1) % totalSlides);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(clientInterval);
   }, [totalSlides]);
 
@@ -208,20 +211,20 @@ export default function Home() {
           </div>
 
           <div className="relative overflow-x-auto px-2 md:px-10">
-            <div className="flex transition-transform duration-500 ease-in-out gap-6 md:gap-10" ref={containerRef}>
+            <div className="flex justify-center items-center transition-transform duration-500 ease-in-out gap-6 md:gap-10" ref={containerRef}>
               {visibleClients.map((client, idx) => (
                 <div
                   key={idx}
                   className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-md bg-white border border-green-100 hover:shadow-xl transition-all animate-pop-in"
                 >
-                  <div className="flex items-center justify-center w-24 h-20 md:w-32 md:h-24 bg-white rounded-lg overflow-hidden shadow-inner">
+                  <div className={`flex items-center justify-center ${logoSizeClass} bg-white rounded-lg overflow-hidden shadow-inner`}>
                     <img
                       src={client.logo}
                       alt={client.name}
-                      className="object-contain object-center max-h-16 md:max-h-20 w-auto h-auto client-logo"
+                      className="object-contain object-center w-full h-full client-logo"
                     />
                   </div>
-                  <p className="mt-3 text-xs md:text-base font-medium text-gray-700 text-center">
+                  <p className="mt-3 text-xs md:text-base font-medium text-gray-700 text-center w-full">
                     {client.name}
                   </p>
                 </div>

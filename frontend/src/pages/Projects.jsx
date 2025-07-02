@@ -60,6 +60,9 @@ const ongoingProjects = [
 export default function Projects() {
   const [count, setCount] = useState(0);
   const [startIdx, setStartIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [ongoingStartIdx, setOngoingStartIdx] = useState(0);
+  const [isOngoingPaused, setIsOngoingPaused] = useState(false);
   const maxCount = projects.length;
   const displayCount = count < maxCount ? count : `${maxCount}+`;
 
@@ -80,16 +83,33 @@ export default function Projects() {
   // Animate visible cards (carousel)
   useEffect(() => {
     if (projects.length <= 4) return;
+    if (isPaused) return;
     const timer = setInterval(() => {
       setStartIdx((prev) => (prev + 1) % projects.length);
-    }, 1500);
+    }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused, projects.length]);
+
+  // Animate ongoing projects carousel
+  useEffect(() => {
+    if (ongoingProjects.length <= 4) return;
+    if (isOngoingPaused) return;
+    const timer = setInterval(() => {
+      setOngoingStartIdx((prev) => (prev + 1) % ongoingProjects.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isOngoingPaused, ongoingProjects.length]);
 
   // Get 4 visible projects, cycling through the list
   const visibleProjects = [];
   for (let i = 0; i < 4; i++) {
     visibleProjects.push(projects[(startIdx + i) % projects.length]);
+  }
+
+  // Get 4 visible ongoing projects, cycling through the list
+  const visibleOngoingProjects = [];
+  for (let i = 0; i < 4; i++) {
+    visibleOngoingProjects.push(ongoingProjects[(ongoingStartIdx + i) % ongoingProjects.length]);
   }
 
   return (
@@ -105,7 +125,12 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto pt-12 px-4">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 animate-fade-in mb-16">
           {visibleProjects.map((project, idx) => (
-            <div key={idx} className="project-card bg-white rounded-3xl shadow-2xl hover:shadow-green-200 transition-all duration-500 flex flex-col items-center p-8 group scale-100 animate-project-fade-in">
+            <div
+              key={idx}
+              className="project-card bg-white rounded-3xl shadow-2xl hover:shadow-green-200 transition-all duration-500 flex flex-col items-center p-8 group scale-100 animate-project-fade-in"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               <div className="w-full h-48 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden">
                 {/* Placeholder for project image */}
                 <span className="text-gray-400 text-3xl">Image</span>
@@ -120,8 +145,13 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">Ongoing Projects</h2>
         </section>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 animate-fade-in">
-          {ongoingProjects.map((project, idx) => (
-            <div key={idx} className="project-card bg-white rounded-3xl shadow-2xl hover:shadow-green-200 transition-all duration-500 flex flex-col items-center p-8 group scale-100 animate-project-fade-in">
+          {visibleOngoingProjects.map((project, idx) => (
+            <div
+              key={idx}
+              className="project-card bg-white rounded-3xl shadow-2xl hover:shadow-green-200 transition-all duration-500 flex flex-col items-center p-8 group scale-100 animate-project-fade-in"
+              onMouseEnter={() => setIsOngoingPaused(true)}
+              onMouseLeave={() => setIsOngoingPaused(false)}
+            >
               <div className="w-full h-48 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden">
                 {/* Placeholder for project image */}
                 <span className="text-gray-400 text-3xl">Image</span>

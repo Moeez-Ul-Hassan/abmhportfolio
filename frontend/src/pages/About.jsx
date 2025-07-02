@@ -31,13 +31,13 @@ export default function About() {
     {
       role: "Chairman & CEO",
       name: "Abdul Sattar",
-      position: "Associate Civil Engineer",
+      position: "Senior Civil Engineer",
       icon: <FaUserTie className="text-3xl text-green-600" />
     },
     {
       role: "Director",
       name: "Ghulam Murtaza",
-      position: "Associate Electrical Engineer",
+      position: "Senior Electrical Engineer",
       icon: <FaUserTie className="text-3xl text-green-600" />
     }
   ];
