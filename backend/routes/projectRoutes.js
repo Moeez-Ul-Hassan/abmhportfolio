@@ -15,10 +15,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // File upload endpoint (used by frontend to store files locally and get a URL)
-router.post('/upload', upload.single('file'), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-  const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-  res.json({ url });
+router.post('/upload', upload.array('files', 10), (req, res) => {
+  if (!req.files || req.files.length === 0) return res.status(400).json({ error: 'No files uploaded' });
+  const urls = req.files.map(file => `${req.protocol}://${req.get('host')}/uploads/${file.filename}`);
+  res.json({ urls });
 });
 
 module.exports = router; 

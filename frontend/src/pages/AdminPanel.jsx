@@ -78,17 +78,25 @@ function ProjectsTab() {
     setNewProject({
       title: p.title,
       description: p.description || "",
-      images: [],
+      images: p.images || [],
       workOrder: null,
     });
-    setImagePreviews(p.images || []);
+    setImagePreviews((p.images || []).map(img => typeof img === 'string' ? img : URL.createObjectURL(img)));
     setWorkOrderPreview(p.workOrder || null);
     setShowModal(true);
   };
   const handleImagesChange = (e) => {
     const files = Array.from(e.target.files);
-    setNewProject({ ...newProject, images: files });
-    setImagePreviews(files.map(file => URL.createObjectURL(file)));
+    // Append new files to existing ones
+    const newFiles = [...(newProject.images || []), ...files];
+    setNewProject({ ...newProject, images: newFiles });
+    setImagePreviews(newFiles.map(file => typeof file === 'string' ? file : URL.createObjectURL(file)));
+  };
+  const handleRemoveImage = (idx) => {
+    const updatedImages = [...newProject.images];
+    updatedImages.splice(idx, 1);
+    setNewProject({ ...newProject, images: updatedImages });
+    setImagePreviews(updatedImages.map(file => typeof file === 'string' ? file : URL.createObjectURL(file)));
   };
   const handleWorkOrderChange = (e) => {
     const file = e.target.files[0];
@@ -96,17 +104,15 @@ function ProjectsTab() {
     setWorkOrderPreview(file ? URL.createObjectURL(file) : null);
   };
   async function uploadFiles(files) {
-    // POST to backend /uploads, return array of URLs
-    const uploaded = [];
+    // POST to backend /upload, return array of URLs
+    const form = new FormData();
     for (const file of files) {
-      const form = new FormData();
-      form.append("file", file);
-      const res = await fetch("http://localhost:5000/api/upload", { method: "POST", body: form });
-      if (!res.ok) throw new Error("File upload failed");
-      const { url } = await res.json();
-      uploaded.push(url);
+      form.append('files', file);
     }
-    return uploaded;
+    const res = await fetch("http://localhost:5000/api/upload", { method: "POST", body: form });
+    if (!res.ok) throw new Error("File upload failed");
+    const { urls } = await res.json();
+    return urls;
   }
   async function uploadSingleFile(file) {
     if (!file) return null;
@@ -121,11 +127,15 @@ function ProjectsTab() {
     setLoading(true);
     setError("");
     try {
-      let images = imagePreviews;
-      let workOrder = workOrderPreview;
-      if (newProject.images && newProject.images.length > 0) {
-        images = await uploadFiles(newProject.images);
+      // Separate files and URLs
+      const filesToUpload = (newProject.images || []).filter(img => img instanceof File);
+      const existingUrls = (newProject.images || []).filter(img => typeof img === 'string');
+      let images = existingUrls;
+      if (filesToUpload.length > 0) {
+        const uploadedUrls = await uploadFiles(filesToUpload);
+        images = [...existingUrls, ...uploadedUrls];
       }
+      let workOrder = workOrderPreview;
       if (newProject.workOrder) {
         workOrder = await uploadSingleFile(newProject.workOrder);
       }
@@ -141,7 +151,6 @@ function ProjectsTab() {
       } else {
         await addDoc(collection(db, "projects"), data);
       }
-      setShowModal(false);
       setNewProject({ title: "", description: "", images: [], workOrder: null });
       setImagePreviews([]);
       setWorkOrderPreview(null);
@@ -150,6 +159,7 @@ function ProjectsTab() {
       setError(e.message);
     } finally {
       setLoading(false);
+      setShowModal(false);
     }
   };
   const handleDelete = async (id) => {
@@ -330,7 +340,17 @@ function ProjectsTab() {
             {imagePreviews.length > 0 && (
               <div className="admin-project-images">
                 {imagePreviews.map((img, idx) => (
-                  <img key={idx} src={img} alt="Preview" className="admin-modal-img-preview" />
+                  <div key={idx} style={{ position: 'relative', display: 'inline-block', marginRight: 8 }}>
+                    <img src={img} alt="Preview" className="admin-modal-img-preview" />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(idx)}
+                      style={{ position: 'absolute', top: 0, right: 0, background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%', width: 24, height: 24, cursor: 'pointer' }}
+                      title="Remove image"
+                    >
+                      ×
+                    </button>
+                  </div>
                 ))}
               </div>
             )}
