@@ -42,6 +42,7 @@ function ProjectsTab() {
   const [expenseLoading, setExpenseLoading] = useState(false);
   const [expenseError, setExpenseError] = useState("");
   const [expensesUnsub, setExpensesUnsub] = useState(null);
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
 
   // --- Firestore listeners ---
   useEffect(() => {
@@ -117,11 +118,11 @@ function ProjectsTab() {
   async function uploadSingleFile(file) {
     if (!file) return null;
     const form = new FormData();
-    form.append("file", file);
+    form.append('files', file);
     const res = await fetch("http://localhost:5000/api/upload", { method: "POST", body: form });
     if (!res.ok) throw new Error("File upload failed");
-    const { url } = await res.json();
-    return url;
+    const { urls } = await res.json();
+    return urls[0];
   }
   const handleAddOrEditProject = async () => {
     setLoading(true);
@@ -271,7 +272,21 @@ function ProjectsTab() {
           return (
             <div key={project.id} className="admin-project-card">
               <div className="admin-project-title">{project.title}</div>
-              {project.description && <div className="admin-project-desc">{project.description}</div>}
+              {project.description && (
+                <div className="admin-project-desc">
+                  {project.description.length > 120 && expandedProjectId !== project.id
+                    ? `${project.description.slice(0, 120)}...`
+                    : project.description}
+                  {project.description.length > 120 && (
+                    <span
+                      style={{ marginLeft: 8, color: '#2563eb', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.97em', background: 'none', border: 'none', padding: 0 }}
+                      onClick={() => setExpandedProjectId(expandedProjectId === project.id ? null : project.id)}
+                    >
+                      {expandedProjectId === project.id ? 'Show less' : 'Read more'}
+                    </span>
+                  )}
+                </div>
+              )}
               {project.images && project.images.length > 0 && (
                 <div className="admin-project-images">
                   {project.images.map((img, i) => (
@@ -299,7 +314,7 @@ function ProjectsTab() {
               </div>
               {project.expenses && project.expenses.length > 0 && (
                 <div className="admin-project-expenses">
-                  {project.expenses.length} expense(s) | <span className="font-semibold">Total: ${totalExpense.toLocaleString()}</span>
+                  {project.expenses.length} expense(s) | <span className="font-semibold">Total: Rs {totalExpense.toLocaleString()}</span>
                 </div>
               )}
             </div>
@@ -401,7 +416,7 @@ function ProjectsTab() {
               {expenses.length === 0 && !expenseLoading && <div className="text-gray-500 text-sm">No expenses yet.</div>}
               {expenses.map((ex) => (
                 <div key={ex.id} className="admin-expense-card">
-                  <div className="admin-expense-title">{ex.title} <span className="text-xs text-gray-500">${ex.amount} x {ex.quantity || 1} = {(Number(ex.amount) * (Number(ex.quantity) || 1)).toLocaleString()}</span></div>
+                  <div className="admin-expense-title">{ex.title} <span className="text-xs text-gray-500">Rs {ex.amount} x {ex.quantity || 1} = Rs {(Number(ex.amount) * (Number(ex.quantity) || 1)).toLocaleString()}</span></div>
                   {ex.description && <div className="text-xs text-gray-600">{ex.description}</div>}
                   {ex.bill && (
                     <div className="mt-1">
