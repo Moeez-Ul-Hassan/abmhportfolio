@@ -43,6 +43,7 @@ function ProjectsTab() {
   const [expenseError, setExpenseError] = useState("");
   const [expensesUnsub, setExpensesUnsub] = useState(null);
   const [expandedProjectId, setExpandedProjectId] = useState(null);
+  const [expenseType, setExpenseType] = useState('item');
 
   // --- Firestore listeners ---
   useEffect(() => {
@@ -198,11 +199,13 @@ function ProjectsTab() {
   };
   const openExpenseEdit = (id) => {
     const ex = expenses.find(e => e.id === id);
+    setExpenseType(ex && ex.currentLocation ? 'item' : 'simple');
     setExpenseModal({ open: true, id, data: ex });
     setBillPreview(ex.bill || null);
   };
   const openExpenseAdd = () => {
-    setExpenseModal({ open: true, id: null, data: { title: "", description: "", amount: "", quantity: 1, bill: null } });
+    setExpenseType('item');
+    setExpenseModal({ open: true, id: null, data: { title: '', description: '', amount: '', quantity: 1, bill: null, currentLocation: '' } });
     setBillPreview(null);
   };
   const handleBillChange = (e) => {
@@ -213,6 +216,8 @@ function ProjectsTab() {
   const handleExpenseSave = async () => {
     setExpenseLoading(true);
     setExpenseError("");
+    setExpenseModal({ open: false, id: null, data: { title: '', description: '', amount: '', quantity: 1, bill: null, currentLocation: '' } });
+    setBillPreview(null);
     try {
       let bill = billPreview;
       if (expenseModal.data.bill && expenseModal.data.bill instanceof File) {
@@ -226,14 +231,27 @@ function ProjectsTab() {
         bill,
         createdAt: serverTimestamp(),
       };
+      if (expenseType === 'item') {
+        data.currentLocation = expenseModal.data.currentLocation;
+      }
       const projectId = selectedProjectId;
       if (expenseModal.id) {
         await updateDoc(doc(db, `projects/${projectId}/expenses`, expenseModal.id), data);
       } else {
         await addDoc(collection(db, `projects/${projectId}/expenses`), data);
       }
-      setExpenseModal({ open: false, id: null, data: { title: "", description: "", amount: "", quantity: 1, bill: null } });
-      setBillPreview(null);
+      if (expenseType === 'item') {
+        await addDoc(collection(db, 'inventory'), {
+          title: expenseModal.data.title,
+          description: expenseModal.data.description,
+          amount: expenseModal.data.amount,
+          quantity: expenseModal.data.quantity,
+          bill,
+          currentLocation: expenseModal.data.currentLocation,
+          createdAt: serverTimestamp(),
+          projectId,
+        });
+      }
     } catch (e) {
       setExpenseError(e.message);
     } finally {
@@ -446,6 +464,14 @@ function ProjectsTab() {
                     ×
                   </button>
                   <h4 className="admin-modal-title">{expenseModal.id ? "Edit Expense" : "Add Expense"}</h4>
+                  <div
+                    className={`expense-type-switch${expenseType === 'item' ? ' active' : ''}`}
+                    onClick={() => setExpenseType(expenseType === 'item' ? 'simple' : 'item')}
+                  >
+                    <div className="expense-type-knob">
+                      {expenseType === 'item' ? 'Item' : 'Simple'}
+                    </div>
+                  </div>
                   <input
                     type="text"
                     placeholder="Title"
@@ -461,9 +487,19 @@ function ProjectsTab() {
                     className="admin-modal-textarea"
                     rows={2}
                   />
+                  {expenseType === 'item' && (
+                    <input
+                      type="text"
+                      placeholder="Current Location"
+                      value={expenseModal.data.currentLocation || ''}
+                      onChange={e => setExpenseModal(modal => ({ ...modal, data: { ...modal.data, currentLocation: e.target.value } }))}
+                      className="admin-modal-input"
+                      required
+                    />
+                  )}
                   <input
                     type="number"
-                    placeholder="Amount"
+                    placeholder="Item Price"
                     value={expenseModal.data.amount}
                     onChange={e => setExpenseModal(modal => ({ ...modal, data: { ...modal.data, amount: e.target.value } }))}
                     className="admin-modal-input"
@@ -471,7 +507,7 @@ function ProjectsTab() {
                   />
                   <input
                     type="number"
-                    placeholder="Quantity"
+                    placeholder="Item Quantity"
                     min="1"
                     value={expenseModal.data.quantity}
                     onChange={e => {
@@ -500,7 +536,7 @@ function ProjectsTab() {
                   <button
                     className="admin-btn"
                     onClick={handleExpenseSave}
-                    disabled={!expenseModal.data.title || !expenseModal.data.amount}
+                    disabled={!expenseModal.data.title || !expenseModal.data.amount || expenseLoading}
                     style={{ width: "100%" }}
                   >
                     {expenseModal.id ? "Save Changes" : "Add"}

@@ -271,4 +271,43 @@
     align-items: flex-start;
     gap: 0.3rem;
   }
+}
+
+.expense-type-switch {
+  width: 64px;
+  height: 32px;
+  border-radius: 16px;
+  background: #ccc;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  margin: 0 auto 12px auto;
+}
+.expense-type-switch.active {
+  background: #2563eb;
+}
+.expense-type-knob {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #2563eb;
+  z-index: 2;
+}
+.expense-type-switch.active .expense-type-knob {
+  left: 32px;
 } 
