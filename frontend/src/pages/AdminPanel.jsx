@@ -17,6 +17,7 @@ import {
   query,
   orderBy,
   serverTimestamp,
+  where,
 } from "firebase/firestore";
 
 const tabList = [
@@ -553,8 +554,222 @@ function ProjectsTab() {
 }
 
 function InventoryTab() {
-  return <div>Inventory management coming soon.</div>;
+  const [inventory, setInventory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [editItemId, setEditItemId] = useState(null);
+  const [itemModal, setItemModal] = useState({ title: "", description: "", amount: "", quantity: 1, bill: null, currentLocation: "" });
+  const [billPreview, setBillPreview] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    const q = query(collection(db, "inventory"), orderBy("createdAt", "desc"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      setInventory(snapshot.docs.map(d => ({ id: d.id, ...d.data() })));
+      setLoading(false);
+    }, (e) => {
+      setError(e.message);
+      setLoading(false);
+    });
+    return () => unsub();
+  }, []);
+
+  const filtered = inventory.filter(item =>
+    item.title.toLowerCase().includes(search.toLowerCase()) ||
+    (item.description && item.description.toLowerCase().includes(search.toLowerCase())) ||
+    (item.currentLocation && item.currentLocation.toLowerCase().includes(search.toLowerCase()))
+  );
+
+  const openEditModal = (id) => {
+    setEditItemId(id);
+    const item = inventory.find(i => i.id === id);
+    setItemModal({
+      title: item.title,
+      description: item.description || "",
+      amount: item.amount,
+      quantity: item.quantity,
+      bill: item.bill || null,
+      currentLocation: item.currentLocation || ""
+    });
+    setBillPreview(item.bill || null);
+    setShowModal(true);
+  };
+  const openAddModal = () => {
+    setEditItemId(null);
+    setItemModal({ title: "", description: "", amount: "", quantity: 1, bill: null, currentLocation: "" });
+    setBillPreview(null);
+    setShowModal(true);
+  };
+  const handleBillChange = (e) => {
+    const file = e.target.files[0];
+    setItemModal(modal => ({ ...modal, bill: file }));
+    setBillPreview(file ? URL.createObjectURL(file) : null);
+  };
+  const handleSave = async () => {
+    setLoading(true);
+    setShowModal(false);
+    setItemModal({ title: "", description: "", amount: "", quantity: 1, bill: null, currentLocation: "" });
+    setBillPreview(null);
+    setEditItemId(null);
+    try {
+      let bill = billPreview;
+      if (itemModal.bill && itemModal.bill instanceof File) {
+        bill = await uploadSingleFile(itemModal.bill);
+      }
+      const data = {
+        title: itemModal.title,
+        description: itemModal.description,
+        amount: itemModal.amount,
+        quantity: itemModal.quantity,
+        bill,
+        currentLocation: itemModal.currentLocation,
+        createdAt: serverTimestamp(),
+      };
+      if (editItemId) {
+        await updateDoc(doc(db, "inventory", editItemId), data);
+      } else {
+        await addDoc(collection(db, "inventory"), data);
+      }
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleDelete = async (id) => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(db, "inventory", id));
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div>Loading inventory...</div>;
+  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  return (
+    <div>
+      <div className="admin-projects-header">
+        <h3 className="admin-project-title">Inventory</h3>
+        <button className="admin-btn" onClick={openAddModal}>+ Add Item</button>
+      </div>
+      <input
+        type="text"
+        placeholder="Search inventory..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        className="admin-modal-input inventory-search-bar"
+      />
+      <div className="admin-projects-list">
+        {filtered.length === 0 && <div className="inventory-empty-state">No items found.</div>}
+        {filtered.map(item => (
+          <div key={item.id} className="admin-project-card">
+            <div className="admin-project-title">{item.title}</div>
+            {item.description && <div className="admin-project-desc">{item.description}</div>}
+            <div className="inventory-card-details">
+              <b>Price:</b> Rs {item.amount} <b>Qty:</b> {item.quantity}
+            </div>
+            {item.currentLocation && <div className="inventory-card-location"><b>Location:</b> {item.currentLocation}</div>}
+            {item.bill && (
+              <div className="inventory-bill-link">
+                {typeof item.bill === 'string' && item.bill.endsWith('.pdf') ? (
+                  <a href={item.bill} target="_blank" rel="noopener noreferrer" className="admin-expense-bill-link">View Bill (PDF)</a>
+                ) : (
+                  <a href={item.bill} target="_blank" rel="noopener noreferrer"><img src={item.bill} alt="Bill" className="admin-modal-bill-preview" /></a>
+                )}
+              </div>
+            )}
+            <div className="admin-project-actions">
+              <button className="admin-btn warning" onClick={() => openEditModal(item.id)}>Edit</button>
+              <button className="admin-btn danger" onClick={() => handleDelete(item.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      {showModal && (
+        <div className="admin-modal-backdrop">
+          <div className="admin-modal">
+            <button className="admin-modal-close" onClick={() => setShowModal(false)}>×</button>
+            <h4 className="admin-modal-title">{editItemId ? "Edit Item" : "Add Item"}</h4>
+            <input
+              type="text"
+              placeholder="Title"
+              value={itemModal.title}
+              onChange={e => setItemModal(modal => ({ ...modal, title: e.target.value }))}
+              className="admin-modal-input"
+              required
+            />
+            <textarea
+              placeholder="Description (optional)"
+              value={itemModal.description}
+              onChange={e => setItemModal(modal => ({ ...modal, description: e.target.value }))}
+              className="admin-modal-textarea"
+              rows={2}
+            />
+            <input
+              type="number"
+              placeholder="Item Price"
+              value={itemModal.amount}
+              onChange={e => setItemModal(modal => ({ ...modal, amount: e.target.value }))}
+              className="admin-modal-input"
+              required
+            />
+            <input
+              type="number"
+              placeholder="Item Quantity"
+              min="1"
+              value={itemModal.quantity}
+              onChange={e => {
+                const val = e.target.value;
+                setItemModal(modal => ({ ...modal, quantity: val.replace(/^0+/, "") }));
+              }}
+              className="admin-modal-input"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Current Location"
+              value={itemModal.currentLocation || ''}
+              onChange={e => setItemModal(modal => ({ ...modal, currentLocation: e.target.value }))}
+              className="admin-modal-input"
+              required
+            />
+            <label className="admin-modal-label">Bill (Image or PDF, optional)</label>
+            <input
+              type="file"
+              accept=".pdf,image/*"
+              onChange={handleBillChange}
+              className="mb-2"
+            />
+            {billPreview && (
+              <div className="mb-2">
+                {itemModal.bill && itemModal.bill.type === "application/pdf" ? (
+                  <span className="text-xs text-gray-600">PDF selected</span>
+                ) : (
+                  <img src={billPreview} alt="Bill Preview" className="admin-modal-bill-preview" />
+                )}
+              </div>
+            )}
+            <button
+              className="admin-btn"
+              onClick={handleSave}
+              disabled={!itemModal.title || !itemModal.amount || loading}
+              style={{ width: "100%" }}
+            >
+              {editItemId ? "Save Changes" : "Add"}
+            </button>
+            {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
+
 function NotificationsTab() {
   return <div />;
 }

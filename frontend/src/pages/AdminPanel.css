@@ -310,4 +310,27 @@
 }
 .expense-type-switch.active .expense-type-knob {
   left: 32px;
+}
+
+.inventory-search-bar {
+  margin-bottom: 16px;
+  max-width: 320px;
+}
+.inventory-card-details {
+  font-size: 14px;
+  color: #444;
+  margin: 4px 0;
+}
+.inventory-card-location {
+  font-size: 13px;
+  color: #2563eb;
+}
+.inventory-bill-link {
+  margin: 6px 0;
+  display: block;
+}
+.inventory-empty-state {
+  color: #888;
+  font-size: 15px;
+  padding: 16px 0;
 } 
