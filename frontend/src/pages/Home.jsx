@@ -22,7 +22,6 @@ import c6 from "../assets/PAEC.png"
 import c4 from "../assets/govak.png";
 import c5 from "../assets/caa.png";
 
-
 const clients = [
   { name: "United Nations High Commissioner for Refugees", logo: c1 },
   { name: "DHA Bahawalpur", logo: c2 },
@@ -109,8 +108,9 @@ export default function Home() {
       : [...coreValues.slice(coreValueIndex), ...coreValues.slice(0, (coreValueIndex + 3) % coreValues.length)];
 
   return (
-    <div className="overflow-x-hidden">
-      <section className="home-hero relative flex items-center justify-center min-h-screen overflow-hidden">
+    <div className="overflow-x-hidden bg-[#f7fafc]">
+      {/* HERO SECTION */}
+      <section className="home-hero relative flex items-center justify-center min-h-[60vh] md:min-h-[80vh] overflow-hidden">
         <div className="absolute inset-0 z-0">
           {[bg, bg1, bg2, bg3, bg4].map((bg, i) => (
             <div
@@ -119,28 +119,45 @@ export default function Home() {
               style={{ backgroundImage: `url(${bg})` }}
             />
           ))}
-          <div className="absolute inset-0 bg-gradient-to-br from-green-700/80 via-green-900/60 to-black/80 animate-gradient-move" />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-800/80 via-green-900/60 to-black/80 animate-gradient-move" />
         </div>
         <div className="hero-overlay relative z-10 flex flex-col items-center justify-center w-full px-4 py-24 animate-fade-in">
-          <h1 className="hero-title leading-none drop-shadow-xl animate-slide-down">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-green-800 text-center leading-none drop-shadow-xl animate-slide-down">
             <span className="hero-title-main block">ABMH CONSTRUCTION</span>
-            <span className="hero-title-sub block -mt-2">(PVT) LTD.</span>
+            <span className="hero-title-sub block -mt-2 text-2xl md:text-4xl font-semibold tracking-widest text-green-800">(PVT) LTD.</span>
           </h1>
-          <p className="hero-subtitle mb-8 mt-6 max-w-2xl mx-auto animate-fade-in delay-200">
+          <p className="text-base md:text-lg text-gray-600 hero-subtitle mb-8 mt-6 max-w-2xl mx-auto animate-fade-in delay-200 text-center font-medium">
             Building Pakistan's Future with Excellence and Integrity
           </p>
-          <a href="#services" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-gray-900 font-bold text-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 animate-pop-in mt-4">Explore Our Services</a>
+          <a href="#stats" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-gray-900 font-bold text-lg shadow-lg hover:bg-yellow-300 transition-all duration-300 animate-pop-in mt-4">Explore Our Excellence</a>
         </div>
       </section>
 
+      {/* STATISTICS SECTION */}
+      <section id="stats" className="w-full bg-white py-12 md:py-20 shadow-md flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+        <div className="flex flex-col items-center">
+          <span className="text-5xl md:text-6xl font-extrabold text-green-700">10+</span>
+          <span className="text-base md:text-lg text-gray-600 mt-2">Major Projects</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl md:text-6xl font-extrabold text-green-700">7+</span>
+          <span className="text-base md:text-lg text-gray-600 mt-2">Years of Excellence</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl md:text-6xl font-extrabold text-green-700">15+</span>
+          <span className="text-base md:text-lg text-gray-600 mt-2">Satisfied Clients</span>
+        </div>
+      </section>
+
+      {/* SERVICES SECTION */}
       <section id="services" className="services-section relative bg-[#23272f] py-20">
-        <div className="services-container">
-          <h2 className="section-title text-white">Our Services</h2>
+        <div className="services-container max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-black text-center">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
             {visibleServiceCards.map((card, i) => (
               <div
                 key={i}
-                className="construction-card animate-fade-slide-up bg-[#23272f] border border-green-100 shadow-xl rounded-2xl overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group text-white"
+                className="construction-card animate-fade-slide-up bg-white border border-green-100 shadow-xl rounded-2xl overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group text-gray-900"
                 style={{
                   animationDelay: `${i * 0.2}s`,
                   animationFillMode: "both"
@@ -151,8 +168,8 @@ export default function Home() {
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-700 animate-width-grow" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-green-700 transition-colors duration-300">{card.title}</h3>
-                  <p className="text-gray-600">{card.desc}</p>
+                  <h3 className="text-xl md:text-2xl font-semibold text-black mb-2 group-hover:text-yellow-500 transition-colors duration-300">{card.title}</h3>
+                  <p className="text-base md:text-lg text-gray-600">{card.desc}</p>
                 </div>
               </div>
             ))}
@@ -160,6 +177,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* VISION & MISSION SECTION */}
       <section
         className="vision-section relative py-20 md:py-28 text-white flex items-center"
         style={{
@@ -171,17 +189,17 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
         <div className="relative max-w-7xl mx-auto px-4 z-10 w-full">
-          <h2 className="section-title text-white mb-8">Vision & Mission</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-8 text-center">Vision & Mission</h2>
           <div className="grid md:grid-cols-2 gap-10">
             <div className="bg-white p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in">
-              <h3 className="text-2xl font-bold mb-4 text-green-700">Our Vision</h3>
-              <p className="text-gray-700">
+              <h3 className="text-xl md:text-2xl font-semibold text-black mb-4">Our Vision</h3>
+              <p className="text-base md:text-lg text-gray-600">
                 To be Pakistan's leading construction company through innovation, quality, and commitment to sustainable development.
               </p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-lg text-gray-900 border-l-4 border-green-500 animate-fade-in delay-200">
-              <h3 className="text-2xl font-bold mb-4 text-green-700">Our Mission</h3>
-              <p className="text-gray-700">
+              <h3 className="text-xl md:text-2xl font-semibold text-black mb-4">Our Mission</h3>
+              <p className="text-base md:text-lg text-gray-600">
                 To deliver exceptional construction services using cutting-edge technologies while prioritizing safety, quality, and environmental responsibility.
               </p>
             </div>
@@ -189,59 +207,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CORE VALUES SECTION */}
       <section className="values-section bg-white py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title text-gray-900">Core Values</h2>
-          <div className="values-grid mt-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-black text-center">Core Values</h2>
+          <div className="values-grid mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
             {visibleCoreValues.map((value, i) => (
-              <div key={i} className="value-card animate-fade-slide-up bg-white/90 border-l-4 border-green-500 shadow-lg hover:shadow-2xl transition-all duration-300">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-green-700 transition-colors duration-300">{value.title}</h3>
-                <p className="text-gray-700">{value.desc}</p>
+              <div key={i} className="value-card animate-fade-slide-up bg-white border-l-4 border-green-500 shadow-lg hover:shadow-2xl transition-all duration-300 p-6 rounded-xl">
+                <h3 className="text-xl md:text-2xl font-semibold text-black mb-2 group-hover:text-yellow-500 transition-colors duration-300">{value.title}</h3>
+                <p className="text-base md:text-lg text-gray-600">{value.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="clients-section py-20 bg-gray-100">
+      {/* CLIENTS SECTION */}
+      <section className="clients-section bg-[#f7fafc] py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Esteemed Clients</h2>
-            <div className="w-16 h-1 bg-green-600 mx-auto rounded-full" />
-          </div>
-
-          <div className="relative overflow-x-auto px-2 md:px-10">
-            <div className="flex justify-center items-center transition-transform duration-500 ease-in-out gap-6 md:gap-10" ref={containerRef}>
-              {visibleClients.map((client, idx) => (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-xl shadow-md bg-white border border-green-100 hover:shadow-xl transition-all animate-pop-in"
-                >
-                  <div className={`flex items-center justify-center ${logoSizeClass} bg-white rounded-lg overflow-hidden shadow-inner`}>
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="object-contain object-center w-full h-full client-logo"
-                    />
-                  </div>
-                  <p className="mt-3 text-xs md:text-base font-medium text-gray-700 text-center w-full">
-                    {client.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex justify-center gap-2 mt-12">
-            {Array.from({ length: totalSlides }).map((_, idx) => (
-              <button
-                key={idx}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  clientPage === idx ? "bg-green-600 w-6" : "bg-gray-300"
-                }`}
-                onClick={() => setClientPage(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
+          <h2 className="text-3xl md:text-4xl font-bold text-black text-center mb-10">Our Clients</h2>
+          <div className="flex flex-wrap justify-center gap-10 items-center">
+            {clients.map((client, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="w-28 h-20 object-contain mb-0"
+                  title={client.name}
+                  style={{ display: 'block' }}
+                />
+              </div>
             ))}
           </div>
         </div>
