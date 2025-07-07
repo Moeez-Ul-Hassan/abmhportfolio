@@ -657,6 +657,21 @@ function InventoryTab() {
   const handleDelete = async (id) => {
     setLoading(true);
     try {
+      const item = inventory.find(i => i.id === id);
+      
+      // If this inventory item has a projectId, it was added from a project expense, so delete the expense too
+      if (item && item.projectId) {
+        // Find the expense with matching details
+        const expenseQuery = query(
+          collection(db, `projects/${item.projectId}/expenses`),
+          where("title", "==", item.title)
+        );
+        const expenseSnapshot = await getDocs(expenseQuery);
+        expenseSnapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+      }
+      
       await deleteDoc(doc(db, "inventory", id));
     } catch (e) {
       setError(e.message);
