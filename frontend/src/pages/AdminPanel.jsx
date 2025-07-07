@@ -264,6 +264,22 @@ function ProjectsTab() {
     setExpenseError("");
     try {
       const projectId = selectedProjectId;
+      const expense = expenses.find(e => e.id === id);
+      
+      // If this expense has a currentLocation, it was added to inventory, so delete it from inventory too
+      if (expense && expense.currentLocation) {
+        // Find the inventory item with matching details
+        const inventoryQuery = query(
+          collection(db, "inventory"),
+          where("title", "==", expense.title),
+          where("projectId", "==", projectId)
+        );
+        const inventorySnapshot = await getDocs(inventoryQuery);
+        inventorySnapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+      }
+      
       await deleteDoc(doc(db, `projects/${projectId}/expenses`, id));
     } catch (e) {
       setExpenseError(e.message);
