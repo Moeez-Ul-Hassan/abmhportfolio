@@ -104,9 +104,7 @@ const toggleSidebar = () => {
             Contact
           </Link>
           <div className="sidebar-separator mt-4" />
-          <Link to="/admin" className="sidebar-link admin-link" onClick={() => !isDesktop && toggleSidebar()}>
-            Admin Panel
-          </Link>
+          {/* Removed Admin Panel link */}
         </nav>
 
         <div className="sidebar-footer">
