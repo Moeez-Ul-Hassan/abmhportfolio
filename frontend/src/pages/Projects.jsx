@@ -73,7 +73,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Project Sections */}
+      {/* Project Section clear Sections */}
       <ProjectSection title="Construction Projects" projects={constructionProjects} />
       <ProjectSection title="Electrical Projects" projects={electricalProjects} />
       <ProjectSection title="Supply Projects" projects={supplyProjects} />
