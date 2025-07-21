@@ -1,198 +1,274 @@
-import { FaCheckCircle, FaHardHat, FaUserTie, FaUsers } from "react-icons/fa";
-import siteImg from "../assets/clients.jpg"; // Use a high-quality team image
-import valueImg from "../assets/bg5.jpg"; // Use a site/project image
-import cert1 from '../assets/se.jpeg';
-import cert2 from '../assets/pec.jpeg';
-import cert3 from '../assets/fbr.jpeg';
+import React from "react";
 import "./About.css";
+import heroBg from "../assets/bg3.jpg";
+import team1 from "../assets/about-us.jpg";
+import team2 from "../assets/associates.jpg";
+import pecLogo from "../assets/pec.jpeg";
+import seLogo from "../assets/se.jpeg";
+import fbrLogo from "../assets/fbr.jpeg";
+import paecLogo from "../assets/PAEC.png";
+import caaLogo from "../assets/caa.png";
+import unhcrLogo from "../assets/UNHCR.png";
+import { FaShieldAlt, FaHardHat, FaLightbulb, FaAward, FaLeaf, FaHandshake, FaTrophy } from "react-icons/fa";
 
-// Example certificate data (replace img with your actual certificate image paths from src/assets)
-const certificates = [
+const vision = "To be the benchmark of quality and reliability in national and international construction.";
+const mission = "To design, develop, and deliver infrastructure solutions that meet the highest engineering and ethical standards.";
+
+const team = [
   {
-    title: "Clearance Certificate",
-    description: "Secuirity Exchange Clearance",
-    img: cert1
+    name: "Abdul Sattar",
+    title: "Chief Executive Officer (CEO)",
+    img: team1,
+    bio: "A visionary leader with 25+ years in civil engineering, driving ABMH Construction's growth and reputation.",
   },
   {
-    title: "PEC Registration",
-    description: "Pakistan Engineering Council Registered",
-    img: cert2
+    name: "Ghulam Murtaza",
+    title: "Chief Operating Officer (COO)",
+    img: team2,
+    bio: "Expert in operations and project delivery, ensuring every project meets the highest standards.",
   },
   {
-    title: "FBR Clearance",
-    description: "Tax Payer and Clearance of all Assets",
-    img: cert3
-  }
+    name: "Engr. Muhammad Salman Yaseen",
+    title: "Chief Engineer",
+    img: team1,
+    bio: "Leads engineering teams with a focus on innovation, safety, and technical excellence.",
+  },
+  {
+    name: "Project Managers & Civil Engineers",
+    title: "Project Management Team",
+    img: team2,
+    bio: "A dedicated team of certified professionals managing complex infrastructure projects nationwide.",
+  },
+];
+
+const coreValues = [
+  { icon: <FaShieldAlt />, label: "Integrity", desc: "Honest, fair, and ethical operations." },
+  { icon: <FaHardHat />, label: "Safety", desc: "No one gets hurt – everyone goes home safe." },
+  { icon: <FaLightbulb />, label: "Innovation", desc: "Embracing new ideas and technologies." },
+  { icon: <FaAward />, label: "Excellence", desc: "Uncompromising standards in all projects." },
+  { icon: <FaLeaf />, label: "Sustainability", desc: "Environmentally responsible construction." },
+  { icon: <FaHandshake />, label: "Reliability", desc: "We deliver on every promise." },
+];
+
+const certifications = [
+  { name: "ISO 9001:2015 – Quality Management System", logo: seLogo },
+  { name: "PEC Registered (Pakistan Engineering Council)", logo: pecLogo },
+  { name: "HSE Certified (Health, Safety & Environment)", logo: fbrLogo },
+  { name: "PAEC Affiliation", logo: paecLogo },
+  { name: "CAA Approved", logo: caaLogo },
+  { name: "UNHCR Partner", logo: unhcrLogo },
+];
+
+const timeline = [
+  { year: "2005", event: "Company Founded" },
+  { year: "2010", event: "First National Highway Project" },
+  { year: "2015", event: "Won Best Infrastructure Contractor Award" },
+  { year: "2023", event: "Expanded to International Projects" },
 ];
 
 export default function About() {
-  // Management team data
-  const managementTeam = [
-    {
-      role: "Chairman & CEO",
-      name: "Abdul Sattar",
-      position: "Senior Civil Engineer",
-      icon: <FaUserTie className="text-3xl text-green-600" />
-    },
-    {
-      role: "Director",
-      name: "Ghulam Murtaza",
-      position: "Senior Electrical Engineer",
-      icon: <FaUserTie className="text-3xl text-green-600" />
-    }
-  ];
-
-  // Engineers data
-  const engineers = [
-    {
-      name: "Engineer Muhammad Salman Yaseen",
-      qualification: "ELECT/68711",
-      icon: <FaHardHat className="text-2xl text-green-600" />
-    },
-    {
-      name: "Engineer Syed Zohaib Ali Shah",
-      qualification: "CIVIL/58905",
-      icon: <FaHardHat className="text-2xl text-green-600" />
-    },
-    {
-      name: "Associate Civil Engineer Manzar Hussain",
-      qualification: "",
-      icon: <FaHardHat className="text-2xl text-green-600" />
-    },
-    {
-      name: "Associate Electrical Engineer Abdur Rehaman",
-      qualification: "",
-      icon: <FaHardHat className="text-2xl text-green-600" />
-    }
-  ];
-
   return (
-    <section className="about-section bg-white min-h-screen overflow-x-hidden">
-      {/* Hero Header */}
-      <div className="about-header py-20 bg-gradient-to-r from-green-600 to-green-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 transition-opacity duration-700">About ABMH Construction</h1>
-          <p className="text-xl md:text-2xl mb-6 transition-opacity duration-700">Shaping Pakistan's Infrastructure with Integrity & Innovation</p>
-          <div className="w-24 h-1 bg-green-400 mx-auto rounded-full" />
+    <div className="about-root bg-[#23272f] text-white font-sans overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="about-hero relative min-h-[60vh] flex items-center justify-center">
+        <img src={heroBg} alt="About Hero" className="absolute inset-0 w-full h-full object-cover object-center brightness-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-700/80 via-green-900/60 to-black/80" />
+        <div className="relative z-10 text-center px-4 py-24 w-full flex flex-col items-center justify-center">
+          <h1 className="about-hero-title text-4xl md:text-6xl font-bold mb-6 drop-shadow-xl">Building the Future of Pakistan</h1>
+          <p className="about-hero-desc text-lg md:text-2xl max-w-2xl mx-auto mb-8 text-white/90">
+            ABMH Construction is a leading construction and infrastructure development firm committed to excellence, innovation, and nation-building. With a legacy of high-impact projects across roads, bridges, dams, and industrial zones, we deliver quality and trust in every brick.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
-        {/* Company Overview */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Building Pakistan's Future</h2>
-            <p className="text-lg text-gray-600 mb-6">
-              <strong>Established in Faisalabad</strong>, ABMH Construction (Pvt.) Ltd. operates from
-              House No. 480, B Block, Millat Town, serving both public and private sectors with
-              commitment and quality.
-            </p>
-            <p className="text-lg text-gray-600 mb-8">
-              We deliver excellence in highways, bridges, tunnels, industrial and commercial buildings.
-              Our work is driven by strong values of safety, integrity, quality, and sustainability.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-xl font-semibold mb-4 text-green-600">Our Expertise</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>Roads & Highways</li>
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>Bridges & Tunnels</li>
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>Commercial Buildings</li>
-                </ul>
+      {/* Vision & Mission (unified green border) */}
+      <section className="about-vision-mission section-spacer bg-white text-[#23272f]">
+        <div className="section-container grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="vision-mission-card unified-card">
+            <h2 className="text-2xl font-bold mb-4 text-green-700">Our Vision</h2>
+            <p className="text-lg">{vision}</p>
+          </div>
+          <div className="vision-mission-card unified-card">
+            <h2 className="text-2xl font-bold mb-4 text-green-700">Our Mission</h2>
+            <p className="text-lg">{mission}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Leadership & Experts - CEO/COO only */}
+      <section className="about-experts section-spacer bg-[#23272f] text-white dark-section">
+        <div className="section-container">
+          <h2 className="section-title">Meet Our Leadership & Experts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10 mb-8">
+            {team.slice(0,2).map((member, idx) => (
+              <div key={idx} className="team-card prominent-team-card bg-white text-[#23232b] rounded-2xl shadow-xl border border-green-100 flex flex-col items-center p-8 hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                <img src={member.img} alt={member.name} className="w-32 h-32 object-cover rounded-full border-4 border-green-200 mb-4" />
+                <h3 className="text-xl font-bold mb-1 text-green-700">{member.name}</h3>
+                <p className="text-base font-semibold mb-2 text-yellow-700">{member.title}</p>
+                <p className="text-sm text-gray-700 text-center">{member.bio}</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-xl font-semibold mb-4 text-green-600">Our Achievements</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>50+ Completed Projects</li>
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>ISO Certified Processes</li>
-                  <li className="flex items-start"><span className="mr-3 mt-1 text-green-500">●</span>Government Approved</li>
-                </ul>
-              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Engineering Team - Carousel/Slider for engineers */}
+      <section className="about-team section-spacer bg-white text-[#23232b]">
+        <div className="section-container">
+          <h2 className="section-title">Our Engineering Team</h2>
+          <EngineerCarousel engineers={team.slice(2)} />
+          {team.length - 2 > 3 && (
+            <div className="flex justify-center mt-6">
+              <EngineerSeeMoreBtn />
             </div>
-          </div>
-          <div className="flex justify-center">
-            <img src={siteImg} alt="ABMH Construction Team" className="rounded-xl shadow-2xl w-full max-w-lg h-auto object-cover border-4 border-green-100" />
-          </div>
+          )}
         </div>
+      </section>
 
-        {/* Management Team */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Leadership</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Experienced professionals guiding ABMH Construction to excellence</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {managementTeam.map((member, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-md border-t-4 border-green-500 hover:shadow-2xl transition-shadow duration-300">
-                <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 text-4xl text-green-600">{member.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-800">{member.role}</h3>
-                  <p className="text-2xl font-semibold text-green-600 my-2">{member.name}</p>
-                  <p className="text-gray-600">{member.position}</p>
-                </div>
+      {/* Core Values - unified card style */}
+      <section className="about-values section-spacer bg-white text-[#23272f]">
+        <div className="section-container">
+          <h2 className="section-title">Our Core Values</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+            {coreValues.map((val, idx) => (
+              <div key={idx} className="value-card unified-card flex flex-col items-center p-8 hover:shadow-2xl transition-all duration-300">
+                <div className="text-4xl text-green-600 mb-4">{val.icon}</div>
+                <h3 className="text-lg font-bold mb-2 text-green-700">{val.label}</h3>
+                <p className="text-sm text-gray-700 text-center">{val.desc}</p>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Engineers Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Engineering Team</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Certified professionals ensuring quality and precision in every project</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {engineers.map((engineer, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div className="flex items-start">
-                  <div className="mr-4 text-3xl text-green-600">{engineer.icon}</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800">{engineer.name}</h3>
-                    {engineer.qualification && (
-                      <p className="text-sm text-gray-600 mt-1">{engineer.qualification}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Certifications & Affiliations - Carousel/Slider */}
+      <section className="about-certs section-spacer bg-[#23272f] text-white dark-section">
+        <div className="section-container">
+          <h2 className="section-title">Certifications & Affiliations</h2>
+          <CertCarousel certifications={certifications} />
         </div>
+      </section>
 
-        {/* Values Banner */}
-        <div className="relative rounded-xl overflow-hidden h-64">
-          <img src={valueImg} alt="ABMH Construction Values" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="text-center text-white px-4">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
-              <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
-                {['Safety', 'Quality', 'Integrity', 'Reliability', 'Teamwork'].map((value, index) => (
-                  <div key={index} className="bg-green-600 bg-opacity-90 px-4 py-2 rounded-full transition-all duration-300">{value}</div>
-                ))}
-              </div>
+      {/* Legacy Timeline */}
+      <section className="about-timeline section-spacer bg-white text-[#23272f]">
+        <div className="section-container">
+          <h2 className="section-title">Our Legacy</h2>
+          <LegacyTimeline timeline={timeline} />
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="about-cta bg-gradient-to-r from-green-700 to-green-900 py-16 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Want to partner with us or learn more?</h2>
+        <p className="text-lg text-white/90 mb-8">Get in touch today and let’s build the future together.</p>
+        <a href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-gray-900 font-bold text-lg shadow-lg hover:bg-yellow-300 transition-all duration-300">Contact Us</a>
+      </section>
+    </div>
+  );
+}
+
+function CertCarousel({ certifications }) {
+  const [expanded, setExpanded] = React.useState(false);
+  const [start, setStart] = React.useState(0);
+  const visible = expanded ? certifications : certifications.slice(start, start + 3);
+  const canPrev = start > 0 && !expanded;
+  const canNext = start + 3 < certifications.length && !expanded;
+  const handlePrev = () => setStart(s => Math.max(0, s - 1));
+  const handleNext = () => setStart(s => (s + 3 < certifications.length ? s + 1 : s));
+  return (
+    <>
+      <div className="cert-carousel flex items-center justify-center gap-4 mt-10">
+        {!expanded && (
+          <button onClick={handlePrev} disabled={!canPrev} className="carousel-arrow" aria-label="Previous" style={{opacity: canPrev ? 1 : 0.3}}>&lt;</button>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-3xl">
+          {visible.map((cert, idx) => (
+            <div key={idx} className="cert-card large-cert-card flex flex-col items-center p-8 bg-white/90 rounded-2xl shadow-xl">
+              <a href={cert.logo} target="_blank" rel="noopener noreferrer">
+                <img src={cert.logo} alt={cert.name} className="w-28 h-28 object-contain rounded-xl bg-white mb-4 shadow-md cursor-pointer" />
+              </a>
+              <p className="text-base text-center mt-2 text-[#23232f] font-semibold">{cert.name}</p>
             </div>
-          </div>
+          ))}
         </div>
-
-        {/* Certifications Section */}
-        <section className="py-16 md:py-20">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Certifications</h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Our company is recognized and certified for quality, safety, and engineering excellence.</p>
-          </div>
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {certificates.map((cert, idx) => (
-              <div key={idx} className="certificate-card bg-white rounded-2xl shadow-lg hover:shadow-green-200 transition-all duration-300 flex flex-col items-center p-8">
-                <div className="w-full h-48 bg-gray-100 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                  <img src={cert.img} alt={cert.title} className="object-contain h-full w-auto" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 text-center mb-2">{cert.title}</h3>
-                <p className="text-gray-600 text-center text-sm">{cert.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {!expanded && (
+          <button onClick={handleNext} disabled={!canNext} className="carousel-arrow" aria-label="Next" style={{opacity: canNext ? 1 : 0.3}}>&gt;</button>
+        )}
       </div>
-    </section>
+      {certifications.length > 3 && (
+        <div className="flex justify-center mt-6">
+          <button className="see-more-btn" onClick={() => setExpanded(e => !e)}>
+            {expanded ? 'See Less' : 'See More'}
+          </button>
+        </div>
+      )}
+    </>
+  );
+}
+
+function EngineerCarousel({ engineers }) {
+  const [expanded, setExpanded] = React.useState(false);
+  const [start, setStart] = React.useState(0);
+  const visible = expanded ? engineers : engineers.slice(start, start + 3);
+  const canPrev = start > 0 && !expanded;
+  const canNext = start + 3 < engineers.length && !expanded;
+  const handlePrev = () => setStart(s => Math.max(0, s - 1));
+  const handleNext = () => setStart(s => (s + 3 < engineers.length ? s + 1 : s));
+  return (
+    <>
+      <div className="cert-carousel flex items-center justify-center gap-4 mt-10">
+        {!expanded && (
+          <button onClick={handlePrev} disabled={!canPrev} className="carousel-arrow" aria-label="Previous" style={{opacity: canPrev ? 1 : 0.3}}>&lt;</button>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-3xl">
+          {visible.map((member, idx) => (
+            <div key={idx} className="engineer-card bg-white text-[#23232b] rounded-2xl shadow-xl flex flex-col items-center p-6 hover:scale-105 hover:shadow-2xl transition-all duration-300">
+              <img src={member.img} alt={member.name} className="w-20 h-20 object-cover rounded-full border-4 border-green-200 mb-4" />
+              <h3 className="text-lg font-bold mb-1 text-green-700">{member.name}</h3>
+              <p className="text-sm font-semibold mb-2 text-yellow-700">{member.title}</p>
+            </div>
+          ))}
+        </div>
+        {!expanded && (
+          <button onClick={handleNext} disabled={!canNext} className="carousel-arrow" aria-label="Next" style={{opacity: canNext ? 1 : 0.3}}>&gt;</button>
+        )}
+      </div>
+    </>
+  );
+}
+
+function EngineerSeeMoreBtn() {
+  return (
+    <button className="see-more-btn" onClick={() => {}}>
+      See More
+    </button>
+  );
+}
+
+function LegacyTimeline({ timeline }) {
+  const [expanded, setExpanded] = React.useState(false);
+  const defaultCount = 5;
+  const visible = expanded ? timeline : timeline.slice(0, defaultCount);
+  return (
+    <>
+      <div className="timeline flex flex-col md:flex-row md:items-center md:justify-between gap-8 mt-10">
+        {visible.map((item, idx) => (
+          <div key={idx} className="timeline-item flex flex-col items-center md:items-start md:w-1/4">
+            <div className="mb-2 md:mb-4">
+              <FaTrophy className="text-yellow-400" style={{ fontSize: '2rem' }} />
+            </div>
+            <div className="timeline-year text-lg font-bold text-green-700 mb-1">{item.year}</div>
+            <div className="timeline-event text-sm text-gray-700 text-center md:text-left">{item.event}</div>
+          </div>
+        ))}
+      </div>
+      {timeline.length > defaultCount && (
+        <div className="flex justify-center mt-6">
+          <button className="see-more-btn" onClick={() => setExpanded(e => !e)}>
+            {expanded ? 'See Less' : 'See More'}
+          </button>
+        </div>
+      )}
+    </>
   );
 }

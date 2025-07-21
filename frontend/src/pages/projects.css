@@ -1,8 +1,6 @@
 /* Projects Page Styles */
 .projects-section {
   min-height: 100vh;
-  /* Remove or comment out the background gradient to let the header's green background show */
-  /* background: linear-gradient(180deg, #f0fdf4 0%, #fff 60%, #e0f2fe 100%); */
 }
 
 .project-counter {
@@ -40,13 +38,58 @@
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.project-card {
+.project-card, .unified-card {
   box-shadow: 0 6px 32px 0 rgba(34,197,94,0.08), 0 1.5px 4px 0 rgba(0,0,0,0.04);
   border-radius: 1.5rem;
   transition: box-shadow 0.3s, transform 0.3s;
   background: #fff;
+  font-family: 'Poppins', 'Segoe UI', 'Lato', Arial, sans-serif;
+  border: 1px solid #e5e7eb;
 }
-.project-card:hover {
+.project-card:hover, .unified-card:hover {
   box-shadow: 0 12px 40px 0 rgba(34,197,94,0.16), 0 2px 8px 0 rgba(0,0,0,0.08);
   transform: translateY(-6px) scale(1.03);
+}
+
+.unified-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Highlights section */
+.projects-highlights {
+  background: #fff;
+  padding: 3rem 0;
+}
+.highlight-card {
+  background: #f9fafb;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.08);
+  font-family: 'Poppins', 'Segoe UI', 'Lato', Arial, sans-serif;
+}
+
+/* CTA section */
+.projects-cta {
+  background: linear-gradient(90deg, #15803d 0%, #166534 100%);
+  color: #fff;
+  padding: 3rem 0;
+  text-align: center;
+}
+.projects-cta a {
+  background: #FFD700;
+  color: #23232b;
+  font-weight: bold;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.12);
+  transition: background 0.2s;
+  display: inline-block;
+  margin-top: 1rem;
+}
+.projects-cta a:hover {
+  background: #ffe066;
 } 

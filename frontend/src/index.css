@@ -6,14 +6,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Remove default margins and padding from body to eliminate white space */
 body {
-  color: #1f2937; /* text-gray-800 */
+  color: #fff;
   font-family: theme('fontFamily.sans');
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  height: 100%; /* Ensure body takes full height */
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  background-color: #1A202C; /* Set dark background */
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #223D26; /* military.green */
 }
