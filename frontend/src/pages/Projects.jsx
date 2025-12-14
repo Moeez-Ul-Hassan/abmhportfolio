@@ -3,30 +3,39 @@ import "./projects.css";
 import heroBg from "../assets/bg4.jpg";
 import placeholderImg from "../assets/bg3.jpg";
 
+// Import project-specific images
+import gmrajaImage from "../assets/gmraja.jpg";
+import youngwalaImage from "../assets/youngwala.jpeg";
+import bilalcolImage from "../assets/bilalcol.jpeg";
+import chiniotImage from "../assets/chiniot.jpg";
+import bermImage from "../assets/berm.jpeg";
+import eeImage from "../assets/ee.jpeg";
+import bbImage from "../assets/bb.jpeg";
+import canImage from "../assets/can.jpg";
+import sgsImage from "../assets/sgs.jpg";
+
 // Shortened project names for demo, now with images
 const constructionProjects = [
-  { name: "Boundary Wall, GM RAJA", img: placeholderImg },
-  { name: "Brick Lining, Burala Canal", img: placeholderImg },
-  { name: "VRB Bridge, Hinduana", img: placeholderImg },
-  { name: "Main Gate, Haroonabad", img: placeholderImg },
-  { name: "Residence, Canal Division", img: placeholderImg },
-  { name: "Office, Canal Division", img: placeholderImg },
-  { name: "CAT-IV Quarters, Satiana", img: placeholderImg },
-  { name: "Classrooms, GGHS 38/3R", img: placeholderImg },
+  { name: "Re-Construction of Boundary Wall, GM RAJA Grid Station", img: gmrajaImage },
+  { name: "Replacement of Roof of 50 New YoungWala UAF", img: youngwalaImage },
+  { name: "Repairing of Executive Engineer Residence Faisalabad", img: eeImage },
+  { name: "Construction of CAT-IV Quarters at Satiana", img: placeholderImg },
+  { name: "Construction of Link Corridor between OPD Block and Raazi Block at PGH, Islamabad", img: chiniotImage },
+  { name: "Civil And Public Health Work to House No 1 RajaWala Colony UAF", img: placeholderImg },
+  { name: "Repair and Maintinace of House 14 at Bilal Colony UAF", img: bilalcolImage },
+  { name: "Repairing Executive Engineer Office Canal Division Faisalabad", img: eeImage },
+  { name: "Repairing Brick Lining from RD 332+00 to 354+800L/S Burala Branch Canal Faisalabad", img: bbImage },
+  { name: "Repairing Side Protection VRB of Chiniot Disty", img: chiniotImage },
+  { name: "Repairing Side Protection VRB of Hinduana Disty", img: placeholderImg },
+  { name: "Berm Cutting of Nasrana Disty", img: bermImage },
 ];
 
 const electricalProjects = [
-  { name: "132kV Substation, City A", img: placeholderImg },
-  { name: "Grid Station, City B", img: placeholderImg },
-  { name: "Smart Metering, City C", img: placeholderImg },
-  { name: "Transmission Line, City D", img: placeholderImg },
+  { name: "Replacement of Electrical Turbines at UAF", img: eeImage },
 ];
 
 const supplyProjects = [
-  { name: "Cement & Steel, Lahore", img: placeholderImg },
-  { name: "Equipment, Karachi", img: placeholderImg },
-  { name: "Logistics, Multan", img: placeholderImg },
-  { name: "Pipes, Islamabad", img: placeholderImg },
+  { name: "Providing and Fixing RD Markd and Data Board In Sarangwala Station", img: sgsImage },
 ];
 
 function ProjectSection({ title, projects }) {

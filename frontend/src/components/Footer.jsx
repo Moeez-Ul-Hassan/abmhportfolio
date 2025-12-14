@@ -22,9 +22,6 @@ const Footer = () => {
               <a href="#" className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <img src={linkedinIcon} alt="LinkedIn" className="footer-social-img" />
               </a>
-              <a href="#" className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <img src={githubIcon} alt="GitHub" className="footer-social-img" />
-              </a>
             </div>
           </div>
 

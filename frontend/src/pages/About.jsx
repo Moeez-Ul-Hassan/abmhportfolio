@@ -1,14 +1,16 @@
 import React from "react";
 import "./About.css";
 import heroBg from "../assets/bg3.jpg";
-import team1 from "../assets/about-us.jpg";
-import team2 from "../assets/associates.jpg";
+import team1 from "../assets/1.png";
+import team2 from "../assets/2.png";
+import team3 from "../assets/oth.jpg";
 import pecLogo from "../assets/pec.jpeg";
 import seLogo from "../assets/se.jpeg";
 import fbrLogo from "../assets/fbr.jpeg";
 import paecLogo from "../assets/PAEC.png";
 import caaLogo from "../assets/caa.png";
 import unhcrLogo from "../assets/UNHCR.png";
+
 import { FaShieldAlt, FaHardHat, FaLightbulb, FaAward, FaLeaf, FaHandshake, FaTrophy } from "react-icons/fa";
 
 const vision = "To be the benchmark of quality and reliability in national and international construction.";
@@ -30,15 +32,29 @@ const team = [
   {
     name: "Engr. Muhammad Salman Yaseen",
     title: "Chief Engineer",
-    img: team1,
+    img: team3,
     bio: "Leads engineering teams with a focus on innovation, safety, and technical excellence.",
   },
   {
-    name: "Project Managers & Civil Engineers",
-    title: "Project Management Team",
-    img: team2,
-    bio: "A dedicated team of certified professionals managing complex infrastructure projects nationwide.",
+    name: "Engr. Syed Zohaib Ali Shah",
+    title: "Chief Engineer",
+    img: team3,
+    bio: "Leads engineering teams with a focus on innovation, safety, and technical excellence.",
   },
+  {
+    name: "Associate Engr. Manzar Hussain",
+    title: "Associate Engineer",
+    img: team3,
+    bio: "Leads engineering teams with a focus on innovation, safety, and technical excellence.",
+  },
+  {
+    name: "Associate Engr. Abdur Rehman",
+    title: "Electrical Engineer",
+    img: team3,
+    bio: "Leads engineering teams with a focus on innovation, safety, and technical excellence.",
+  },
+  
+  
 ];
 
 const coreValues = [
@@ -51,19 +67,15 @@ const coreValues = [
 ];
 
 const certifications = [
-  { name: "ISO 9001:2015 – Quality Management System", logo: seLogo },
   { name: "PEC Registered (Pakistan Engineering Council)", logo: pecLogo },
-  { name: "HSE Certified (Health, Safety & Environment)", logo: fbrLogo },
-  { name: "PAEC Affiliation", logo: paecLogo },
-  { name: "CAA Approved", logo: caaLogo },
-  { name: "UNHCR Partner", logo: unhcrLogo },
+  { name: "FBR Registered", logo: fbrLogo },
 ];
 
 const timeline = [
-  { year: "2005", event: "Company Founded" },
-  { year: "2010", event: "First National Highway Project" },
-  { year: "2015", event: "Won Best Infrastructure Contractor Award" },
-  { year: "2023", event: "Expanded to International Projects" },
+  { year: "2022", event: "Company Founded" },
+  { year: "2023", event: "Got Work from PAEC" },
+  { year: "2023", event: "Got Registered in WASO" },
+  { year: "2024", event: "Expanded to C4-Category" },
 ];
 
 export default function About() {

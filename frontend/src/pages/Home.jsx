@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import "./Home.css";
 
-import bg from "../assets/1.jpg";
-import bg1 from "../assets/2.jpg";
-import bg2 from "../assets/3.jpg";
+import bg from "../assets/p1.jpg";
+import bg1 from "../assets/p2.jpeg";
+import bg2 from "../assets/p3.jpg";
 import bg3 from "../assets/4.jpg";
 import bg4 from "../assets/5.jpg";
 
@@ -21,13 +21,21 @@ import c3 from "../assets/govpb.png";
 import c6 from "../assets/PAEC.png"
 import c4 from "../assets/govak.png";
 import c5 from "../assets/caa.png";
+import c7 from "../assets/pid.jpg";
+import c8 from "../assets/ido.png"
+import c9 from "../assets/fesco.png";
+import c10 from "../assets/au.png";
 
 
 const clients = [
   { name: "DHA Bahawalpur", logo: c2 },
   { name: "Punjab Government", logo: c3 },
-  { name: "Multan Development Authority", logo: c3 },
   { name: "WASO PAKISTAN ATOMIC ENERGY", logo: c6 },
+  { name: "Punjab Irrigation Department", logo: c7 },
+  { name: "Agriculture University", logo: c10 },
+  { name: "Faisalabad Electric Supply Company", logo: c9 },
+  { name: "Agriculture University", logo: c10 },
+
 ];
 
 const constructionData = [
@@ -35,7 +43,6 @@ const constructionData = [
   { title: "Buildings", desc: "Residential and commercial structures of all scales.", img: building },
   { title: "Bridges", desc: "Strong and safe bridge development across terrains.", img: bridge },
   { title: "Industries", desc: "Factory and warehouse construction for industries.", img: ind },
-  { title: "Tunnels", desc: "Precision-engineered tunnels for transport and utilities.", img: tunnel },
 ];
 
 const coreValues = [
@@ -50,19 +57,16 @@ const coreValues = [
 // Add featured projects data (from Projects.jsx)
 const featuredProjects = [
   {
-    title: "Re construction of the Boundary Wall at 132 KV Grid station GM RAJA",
-    description: "Re construction of the Boundary Wall at 132 KV Grid station GM RAJA",
-    img: ""
+    title: "Construction of Link Corridor between OPD Block and Raazi Block at PGH, Islamabad",
+    img: bg
   },
   {
-    title: "Repairing Brick Lining From RD 332+00 To 354+800L/S Burala Branch Canal Faisalabad",
-    description: "Repairing Brick Lining From RD 332+00 To 354+800L/S Burala Branch Canal Faisalabad",
-    img: ""
+    title: "Berm Cutting of Nasrana Disty",
+    img: bg1
   },
   {
-    title: "Repairing VRB Bridge between RD 26+000 To 27+000 along Hinduana Escape Faisalabad",
-    description: "Repairing VRB Bridge between RD 26+000 To 27+000 along Hinduana Escape Faisalabad",
-    img: ""
+    title: "Re- Construction of Boundary Wall at 132 KV Grid Station at GM RAJA, Faisalabad",
+    img: bg2
   }
 ];
 
@@ -167,13 +171,13 @@ export default function Home() {
                 <div key={i} className="construction-card animate-fade-slide-up">
                   <div className="relative overflow-hidden w-full h-48 bg-gray-200 flex items-center justify-center rounded-t-2xl">
                     {project.img ? (
-                      <img src={project.img} alt={project.title} className="card-icon w-full h-full object-cover" />
+                      <img src={project.img} alt={project.title} className="w-full h-full object-contain" />
                     ) : (
                       <span className="text-gray-400 text-3xl">Image</span>
                     )}
                   </div>
                   <div className="p-6">
-                    <h3 className="text-base font-semibold mb-2 text-gray-900 text-center truncate">{project.title}</h3>
+                    <h3 className="text-base font-semibold mb-2 text-gray-900 text-center">{project.title}</h3>
                   </div>
                 </div>
               ))}
