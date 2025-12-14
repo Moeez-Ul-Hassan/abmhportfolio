@@ -1,8 +1,8 @@
 import React from "react";
 import "./About.css";
 import heroBg from "../assets/bg3.jpg";
-import team1 from "../assets/1.png";
-import team2 from "../assets/2.png";
+import team1 from "../assets/1.jpg";
+import team2 from "../assets/2.jpg";
 import team3 from "../assets/oth.jpg";
 import pecLogo from "../assets/pec.jpeg";
 import seLogo from "../assets/se.jpeg";

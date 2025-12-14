@@ -18,7 +18,6 @@ import visionBg from "../assets/bg.jpg";
 import c1 from "../assets/UNHCR.png";
 import c2 from "../assets/dhabwp.png";
 import c3 from "../assets/govpb.png";
-import c6 from "../assets/PAEC.png"
 import c4 from "../assets/govak.png";
 import c5 from "../assets/caa.png";
 import c7 from "../assets/pid.jpg";
@@ -30,7 +29,6 @@ import c10 from "../assets/au.png";
 const clients = [
   { name: "DHA Bahawalpur", logo: c2 },
   { name: "Punjab Government", logo: c3 },
-  { name: "WASO PAKISTAN ATOMIC ENERGY", logo: c6 },
   { name: "Punjab Irrigation Department", logo: c7 },
   { name: "Agriculture University", logo: c10 },
   { name: "Faisalabad Electric Supply Company", logo: c9 },
